@@ -40,7 +40,7 @@ If we make rapid progress on the above goals, we will empirically evaluate the f
 - During the week of 4/3, we will aim to get a working shared memory implementation of the algorithms of Blelloch, Fineman and Shun.
 - During the week of 4/10, we will aim to get a working message passing implementation of Luby's algorithm.
 - During the week of 4/17, we will aim to implement the algorithms of Blelloch, Fineman and Shun in the message passing model.
-- During the week of 4/24, we will attempt to implement our proposed heuristic in the shared-memory model.
+- During the week of 4/24, we will attempt to implement our proposed heuristic in the message passing model.
 
 # References
 - Shi, Wang and Shang's survey [http://web.mit.edu/jeshi/www/public/papers/parallel_MIS_survey.pdf](http://web.mit.edu/jeshi/www/public/papers/parallel_MIS_survey.pdf)
