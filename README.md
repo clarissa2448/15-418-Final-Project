@@ -24,11 +24,11 @@ Overall, we hope to determine how to minimize communication and synchronization 
 
 ## 75% Goals
 
-In case the work goes slowly, we would aim to implement Luby's algorithm and Algorithms 2 and 3 in the paper by Blelloch, Fineman and Shun in the shared memory and message passing models (i.e. OpenMP and MPI).
+In case the work goes slowly, we would aim to implement Luby's algorithm and Algorithms 2 and 3 in the paper by Blelloch, Fineman and Shun in the shared memory model (openMP).
 
 ## 100% Goals
 
-In addition to those, we hope to implement the algorithms mentioned above in CUDA.
+Implement both algorithms in the message passing model (MPI).
 
 ## 125% Goals
 
@@ -36,10 +36,10 @@ If we make rapid progress on the above goals, we will empirically evaluate the f
 
 # Schedule
 
-- During the week of 3/27, we will aim to get a working shared memory implementation of Luby's algorithm, potentially based on existing repositories.
-- During the week of 4/3, we will aim to get a working shared memory implementation of the algorithms of Blelloch, Fineman and Shun, and a message passing implementation of Luby's algorithm.
-- During the week of 4/10, we will aim to get a working message passing implementation of the remaining algorithms.
-- During the week of 4/17, we will implement all of the above algorithms in CUDA.
+- During the week of 3/27, we will aim to get a working shared memory implementation of Luby's algorithm.
+- During the week of 4/3, we will aim to get a working shared memory implementation of the algorithms of Blelloch, Fineman and Shun.
+- During the week of 4/10, we will aim to get a working message passing implementation of Luby's algorithm.
+- During the week of 4/17, we will aim to implement the algorithms of Blelloch, Fineman and Shun in the message passing model.
 - During the week of 4/24, we will attempt to implement our proposed heuristic in the shared-memory model.
 
 # References
