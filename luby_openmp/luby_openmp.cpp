@@ -1,9 +1,44 @@
+/**
+ * Parallel VLSI Wire Routing via OpenMP
+ * Name 1(andrew_id 1), Name 2(andrew_id 2)
+ */
+
+// #include "wireroute.h"
+
+#include <assert.h>
+#include <chrono>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <omp.h>
 #include <stdio.h>
 #include <vector>
 #include <random>
 
-typedef std::pair<int, int> edge;
+static int _argc;
+static const char **_argv;
+
+const char *get_option_string(const char *option_name, const char *default_value) {
+    for (int i = _argc - 2; i >= 0; i -= 2)
+        if (strcmp(_argv[i], option_name) == 0)
+            return _argv[i + 1];
+    return default_value;
+}
+
+int get_option_int(const char *option_name, int default_value) {
+    for (int i = _argc - 2; i >= 0; i -= 2)
+        if (strcmp(_argv[i], option_name) == 0)
+            return atoi(_argv[i + 1]);
+    return default_value;
+}
+
+float get_option_float(const char *option_name, float default_value) {
+    for (int i = _argc - 2; i >= 0; i -= 2)
+        if (strcmp(_argv[i], option_name) == 0)
+            return (float)atof(_argv[i + 1]);
+    return default_value;
+}
+
 
 // Parameters:
 // adj_matrix: the adjacency matrix to which we are adding an edge
@@ -69,8 +104,8 @@ bool** generate_rmat_graph(int n, int E, double a, double b, double c, double d)
     std::uniform_real_distribution<double> rng(0.0, 1.0);
 
     int N = (1 << n); // number of vertices
-    bool* adj_matrix_1d = (bool*) calloc(bool, N * N);
-    bool** adj_matrix = (bool**) calloc(bool*, N);
+    bool* adj_matrix_1d = (bool*) calloc(N * N, sizeof(bool));
+    bool** adj_matrix = (bool**) calloc(N, sizeof(bool*));
     for (int i = 0; i < N; i++) adj_matrix[i] = (adj_matrix_1d + i * N);
 
     int num_edges_left = E;
@@ -82,16 +117,58 @@ bool** generate_rmat_graph(int n, int E, double a, double b, double c, double d)
     return adj_matrix;
 }
 
+// n: Log (base 2) of the number of vertices
+// E: number of edges in the generated graph
+// a: Probability of edge going into upper left of adj. matrix
+// b: Probability of edge going into upper right of adj. matrix and 
+// Probability of edge going into lower left of adj. matrix
+// d: Probability of edge going into lower right of adj. matrix
+// Note that this generates adjacency matrix of a directed graph,
+// but we can use this to generate the adjacency matrix of an
+// undirected graph as described in Section 3.4 of the work of
+// Chakrabarti, Zhan and Faloutsos.
+bool** generate_undirected_graph(int n, int E, double a, double b, double d) {
+    bool ** directed_adj_matrix = generate_rmat_graph(n, E, a, b, b, d);
+    // throw away the half of matrix above the main diagonal 
+    for (int i = 0; i < n; i ++) {
+        // amount we loop into
+        int amt = i + 1; 
+        // go from amt to n
+        for (int j = amt; j < n; j ++) {
+            directed_adj_matrix[i][j] = false;
+        } 
+    }
 
+    // copying the lower half to it
+    for (int i = 0; i < n; i++) {
+        // amt we go until for lower half 
+        int amt = i + 1;
+        for (int j = 0; j < amt; j ++) {
+            directed_adj_matrix[j][i] = directed_adj_matrix[i][j];
+        }
+    }
+    return directed_adj_matrix;
+}
 
-int main() {
+int main(int argc, const char *argv[]) {
+    using namespace std::chrono;
+    typedef std::chrono::high_resolution_clock Clock;
+    typedef std::chrono::duration<double> dsec;
 
-    int n = 10;
-    int E = 200;
-    int a = 0.1;
-    int b = 0.3;
-    int c = 0.3;
-    int d = 0.3;
+    auto init_start = Clock::now();
+    double init_time = 0;
+
+    _argc = argc - 1;
+    _argv = argv + 1;
+
+    int n = get_option_int("-n", 10);
+    int E = get_option_int("-E", 100);
+    double a = get_option_float("-a", 0.1f);
+    double b = get_option_float("-b", 0.3f);
+    double d = get_option_float("-d", 0.3f);
+
+    printf("Number of Nodes: %d Number of Edges: %d\n", n, E);
+    printf("Probability Params: %lf %lf %lf.\n", a, b, d);
 
     // 1. Generate random graph (adjacency matrix format) using 
     // R-MAT (random graph model due to Chakrabarti, Zhan and 
@@ -99,7 +176,25 @@ int main() {
     // Shun)
     // Description of R-MAT method available at:
     // https://www.cs.cmu.edu/~christos/PUBLICATIONS/siam04.pdf
-    bool ** adj_matrix = generate_rmat_graph(n, E, a, b, c, d);
+    bool ** adj_matrix = generate_undirected_graph(n, E, a, b, d);
+
+    for (int i = 0; i < n; i ++) {
+        for (int j = 0; j < n; j ++) {
+            printf("%d ", adj_matrix[i][j]);
+        }
+        printf("\n");
+    }
+
+    init_time += duration_cast<dsec>(Clock::now() - init_start).count();
+    printf("Initialization Time: %lf.\n", init_time);
+
+    auto compute_start = Clock::now();
+    double compute_time = 0;
+
+
+    compute_time += duration_cast<dsec>(Clock::now() - compute_start).count();
+    printf("Computation Time: %lf.\n", compute_time);
+
 
     return 0;
 }
