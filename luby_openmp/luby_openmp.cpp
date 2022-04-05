@@ -50,14 +50,11 @@ float get_option_float(const char *option_name, float default_value) {
 // We assuming i_end - i_start and j_end - j_start are powers of 2.
 // Returns:
 // True if a new edge has been added to the adjacency matrix, and false otherwise.
-bool generate_edge(bool** adj_matrix, int i_start, int i_end, int j_start, int j_end, 
-                    double a, double b, double c, double d, 
-                    std::uniform_real_distribution<double> rng, std::mt19937 mersenne_twister) {
-    if (i_end == i_start + 1 && j_end == j_start + 1) {
-        if (adj_matrix[i_start][j_start]) return false;
-        adj_matrix[i_start][j_start] = true;
-        return true;
-    }
+std::pair<int, int> generate_edge(int i_start, int i_end, int j_start, int j_end, 
+                                    double a, double b, double c, double d, 
+                                    std::uniform_real_distribution<double> rng, std::mt19937 mersenne_twister) {
+
+    if (i_end == i_start + 1 && j_end == j_start + 1) return std::make_pair(i_start, j_start);
 
     // Choose which square to put the edge in randomly.
     double prob = rng(mersenne_twister);
@@ -81,7 +78,7 @@ bool generate_edge(bool** adj_matrix, int i_start, int i_end, int j_start, int j
         i_start = i_start + (i_end - i_start)/2;
         j_start = j_start + (j_end - j_start)/2;
     }
-    return generate_edge(adj_matrix, i_start, i_end, j_start, j_end,
+    return generate_edge(i_start, i_end, j_start, j_end,
                             a, b, c, d, rng, mersenne_twister);
 }
 
@@ -91,63 +88,47 @@ bool generate_edge(bool** adj_matrix, int i_start, int i_end, int j_start, int j
 // E: number of edges in the generated graph
 // a: Probability of edge going into upper left of adj. matrix
 // b: Probability of edge going into upper right of adj. matrix
-// c: Probability of edge going into lower left of adj. matrix
+// c: Probability of edge going into lower left of adj. matrix (same as b)
 // d: Probability of edge going into lower right of adj. matrix
-// Note that this generates adjacency matrix of a directed graph,
-// but we can use this to generate the adjacency matrix of an
-// undirected graph as described in Section 3.4 of the work of
-// Chakrabarti, Zhan and Faloutsos.
-bool** generate_rmat_graph(int n, int E, double a, double b, double c, double d) {
+// This creates the adjacency list of an undirected graph.
+std::vector<int> * generate_rmat_graph(int n, int E, double a, double b, double d) {
 
     std::random_device seed;
     std::mt19937 mersenne_twister(seed());
     std::uniform_real_distribution<double> rng(0.0, 1.0);
+    double c = b; //probability of the lower left square of adjacency matrix.
 
     int N = (1 << n); // number of vertices
-    bool* adj_matrix_1d = (bool*) calloc(N * N, sizeof(bool));
-    bool** adj_matrix = (bool**) calloc(N, sizeof(bool*));
-    for (int i = 0; i < N; i++) adj_matrix[i] = (adj_matrix_1d + i * N);
-
+    std::vector<int> * adjacency_list = (std::vector<int> *) calloc(N, sizeof(std::vector<int>));
     int num_edges_left = E;
     while (num_edges_left > 0) {
-        bool new_edge = generate_edge(adj_matrix, 0, N, 0, N, a, b, c, d, rng, mersenne_twister);
-        if (new_edge) num_edges_left--;
-    }
 
-    return adj_matrix;
-}
+        std::pair<int, int> new_edge = generate_edge(0, N, 0, N, a, b, c, d, rng, mersenne_twister);
+        int u = new_edge.first;
+        int v = new_edge.second;
+        if (u < v) continue; // Ignore all the edges that are above the main diagonal.
 
-// n: Log (base 2) of the number of vertices
-// E: number of edges in the generated graph
-// a: Probability of edge going into upper left of adj. matrix
-// b: Probability of edge going into upper right of adj. matrix and 
-// Probability of edge going into lower left of adj. matrix
-// d: Probability of edge going into lower right of adj. matrix
-// Note that this generates adjacency matrix of a directed graph,
-// but we can use this to generate the adjacency matrix of an
-// undirected graph as described in Section 3.4 of the work of
-// Chakrabarti, Zhan and Faloutsos.
-bool** generate_undirected_graph(int n, int E, double a, double b, double d) {
-    bool ** directed_adj_matrix = generate_rmat_graph(n, E, a, b, b, d);
-    // throw away the half of matrix above the main diagonal 
-    for (int i = 0; i < n; i ++) {
-        // amount we loop into
-        int amt = i + 1; 
-        // go from amt to n
-        for (int j = amt; j < n; j ++) {
-            directed_adj_matrix[i][j] = false;
-        } 
-    }
+        // Check if this is a new edge
+        bool edge_seen = false;
+        for (uint i = 0; i < adjacency_list[u].size(); i++) {
+            int neighbor = adjacency_list[u][i];
+            if (neighbor == v) {
+                edge_seen = true;
+                break;
+            }
+        }
 
-    // copying the lower half to it
-    for (int i = 0; i < n; i++) {
-        // amt we go until for lower half 
-        int amt = i + 1;
-        for (int j = 0; j < amt; j ++) {
-            directed_adj_matrix[j][i] = directed_adj_matrix[i][j];
+        printf("%d %d\n", u, v);
+
+        // Add if this is edge has not been seen
+        if (!edge_seen) {
+            adjacency_list[u].push_back(v);
+            adjacency_list[v].push_back(u);
+            num_edges_left--;
         }
     }
-    return directed_adj_matrix;
+
+    return adjacency_list;
 }
 
 int main(int argc, const char *argv[]) {
@@ -167,20 +148,24 @@ int main(int argc, const char *argv[]) {
     double b = get_option_float("-b", 0.3f);
     double d = get_option_float("-d", 0.3f);
 
-    printf("Number of Nodes: %d Number of Edges: %d\n", n, E);
+    printf("Number of Nodes: %d Number of Edges: %d\n", (1 << n), E);
     printf("Probability Params: %lf %lf %lf.\n", a, b, d);
 
-    // 1. Generate random graph (adjacency matrix format) using 
+    // 1. Generate random graph (adjacency list format) using 
     // R-MAT (random graph model due to Chakrabarti, Zhan and 
     // Faloutsos, and used in the work of Blelloch, Fineman and 
     // Shun)
     // Description of R-MAT method available at:
     // https://www.cs.cmu.edu/~christos/PUBLICATIONS/siam04.pdf
-    bool ** adj_matrix = generate_undirected_graph(n, E, a, b, d);
+    std::vector<int> * adjacency_list = generate_rmat_graph(n, E, a, b, d);
 
-    for (int i = 0; i < n; i ++) {
-        for (int j = 0; j < n; j ++) {
-            printf("%d ", adj_matrix[i][j]);
+    printf("done\n");
+    
+    int N = (1 << n); // number of vertices
+    for (int u = 0; u < N; u++) {
+        printf("Neighbors of %d: ", u);
+        for (uint i = 0; i < adjacency_list[u].size(); i++) {
+            printf("%d ", adjacency_list[u][i]);
         }
         printf("\n");
     }
