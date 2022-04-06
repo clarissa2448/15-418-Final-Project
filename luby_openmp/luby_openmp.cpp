@@ -52,9 +52,11 @@ float get_option_float(const char *option_name, float default_value) {
 // True if a new edge has been added to the adjacency matrix, and false otherwise.
 std::pair<int, int> generate_edge(int i_start, int i_end, int j_start, int j_end, 
                                     double a, double b, double c, double d, 
-                                    std::uniform_real_distribution<double> rng, std::mt19937 mersenne_twister) {
+                                    std::uniform_real_distribution<double>& rng, std::mt19937& mersenne_twister) {
 
-    if (i_end == i_start + 1 && j_end == j_start + 1) return std::make_pair(i_start, j_start);
+    if (i_end == i_start + 1 && j_end == j_start + 1) {
+        return std::make_pair(i_start, j_start);
+    }
 
     // Choose which square to put the edge in randomly.
     double prob = rng(mersenne_twister);
@@ -117,8 +119,6 @@ std::vector<int> * generate_rmat_graph(int n, int E, double a, double b, double 
                 break;
             }
         }
-
-        printf("%d %d\n", u, v);
 
         // Add if this is edge has not been seen
         if (!edge_seen) {
