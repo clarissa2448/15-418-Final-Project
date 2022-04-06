@@ -1,10 +1,3 @@
-/**
- * Parallel VLSI Wire Routing via OpenMP
- * Name 1(andrew_id 1), Name 2(andrew_id 2)
- */
-
-// #include "wireroute.h"
-
 #include <assert.h>
 #include <algorithm> 
 #include <chrono>
@@ -12,7 +5,7 @@
 #include <cstdlib>
 #include <math.h> 
 #include <cstring>
-#include <omp.h>
+#include <mpi.h>
 #include <stdio.h>
 #include <vector>
 #include <random>
@@ -20,32 +13,12 @@
 #include <vector>
 #include <set>
 
-static int _argc;
-static const char **_argv;
-#define BUFFER_LENGTH 300000;
+
+#define BUFFER_LENGTH 300000
   
 using namespace std;
 
-const char *get_option_string(const char *option_name, const char *default_value) {
-    for (int i = _argc - 2; i >= 0; i -= 2)
-        if (strcmp(_argv[i], option_name) == 0)
-            return _argv[i + 1];
-    return default_value;
-}
 
-int get_option_int(const char *option_name, int default_value) {
-    for (int i = _argc - 2; i >= 0; i -= 2)
-        if (strcmp(_argv[i], option_name) == 0)
-            return atoi(_argv[i + 1]);
-    return default_value;
-}
-
-float get_option_float(const char *option_name, float default_value) {
-    for (int i = _argc - 2; i >= 0; i -= 2)
-        if (strcmp(_argv[i], option_name) == 0)
-            return (float)atof(_argv[i + 1]);
-    return default_value;
-}
 
 
 // Parameters:
@@ -58,14 +31,11 @@ float get_option_float(const char *option_name, float default_value) {
 // We assuming i_end - i_start and j_end - j_start are powers of 2.
 // Returns:
 // True if a new edge has been added to the adjacency matrix, and false otherwise.
-bool generate_edge(bool** adj_matrix, int i_start, int i_end, int j_start, int j_end, 
-                    double a, double b, double c, double d, 
-                    std::uniform_real_distribution<double> rng, std::mt19937 mersenne_twister) {
-    if (i_end == i_start + 1 && j_end == j_start + 1) {
-        if (adj_matrix[i_start][j_start]) return false;
-        adj_matrix[i_start][j_start] = true;
-        return true;
-    }
+std::pair<int, int> generate_edge(int i_start, int i_end, int j_start, int j_end, 
+                                    double a, double b, double c, double d, 
+                                    std::uniform_real_distribution<double> rng, std::mt19937 mersenne_twister) {
+
+    if (i_end == i_start + 1 && j_end == j_start + 1) return std::make_pair(i_start, j_start);
 
     // Choose which square to put the edge in randomly.
     double prob = rng(mersenne_twister);
@@ -89,7 +59,7 @@ bool generate_edge(bool** adj_matrix, int i_start, int i_end, int j_start, int j
         i_start = i_start + (i_end - i_start)/2;
         j_start = j_start + (j_end - j_start)/2;
     }
-    return generate_edge(adj_matrix, i_start, i_end, j_start, j_end,
+    return generate_edge(i_start, i_end, j_start, j_end,
                             a, b, c, d, rng, mersenne_twister);
 }
 
@@ -99,63 +69,48 @@ bool generate_edge(bool** adj_matrix, int i_start, int i_end, int j_start, int j
 // E: number of edges in the generated graph
 // a: Probability of edge going into upper left of adj. matrix
 // b: Probability of edge going into upper right of adj. matrix
-// c: Probability of edge going into lower left of adj. matrix
+// c: Probability of edge going into lower left of adj. matrix (same as b)
 // d: Probability of edge going into lower right of adj. matrix
-// Note that this generates adjacency matrix of a directed graph,
-// but we can use this to generate the adjacency matrix of an
-// undirected graph as described in Section 3.4 of the work of
-// Chakrabarti, Zhan and Faloutsos.
-bool** generate_rmat_graph(int n, int E, double a, double b, double c, double d) {
+// This creates the adjacency list of an undirected graph.
+set<int> * generate_rmat_graph(int n, int E, double a, double b, double d) {
 
     std::random_device seed;
     std::mt19937 mersenne_twister(seed());
     std::uniform_real_distribution<double> rng(0.0, 1.0);
+    double c = b; //probability of the lower left square of adjacency matrix.
 
     int N = (1 << n); // number of vertices
-    bool* adj_matrix_1d = (bool*) calloc(N * N, sizeof(bool));
-    bool** adj_matrix = (bool**) calloc(N, sizeof(bool*));
-    for (int i = 0; i < N; i++) adj_matrix[i] = (adj_matrix_1d + i * N);
-
+    set<int> * adjacency_list = (std::set<int> *) calloc(N, sizeof(set<int>));
     int num_edges_left = E;
     while (num_edges_left > 0) {
-        bool new_edge = generate_edge(adj_matrix, 0, N, 0, N, a, b, c, d, rng, mersenne_twister);
-        if (new_edge) num_edges_left--;
-    }
 
-    return adj_matrix;
-}
+        std::pair<int, int> new_edge = generate_edge(0, N, 0, N, a, b, c, d, rng, mersenne_twister);
+        int u = new_edge.first;
+        int v = new_edge.second;
+        if (u < v) continue; // Ignore all the edges that are above the main diagonal.
 
-// n: Log (base 2) of the number of vertices
-// E: number of edges in the generated graph
-// a: Probability of edge going into upper left of adj. matrix
-// b: Probability of edge going into upper right of adj. matrix and 
-// Probability of edge going into lower left of adj. matrix
-// d: Probability of edge going into lower right of adj. matrix
-// Note that this generates adjacency matrix of a directed graph,
-// but we can use this to generate the adjacency matrix of an
-// undirected graph as described in Section 3.4 of the work of
-// Chakrabarti, Zhan and Faloutsos.
-bool** generate_undirected_graph(int n, int E, double a, double b, double d) {
-    bool ** directed_adj_matrix = generate_rmat_graph(n, E, a, b, b, d);
-    // throw away the half of matrix above the main diagonal 
-    for (int i = 0; i < n; i ++) {
-        // amount we loop into
-        int amt = i + 1; 
-        // go from amt to n
-        for (int j = amt; j < n; j ++) {
-            directed_adj_matrix[i][j] = false;
-        } 
-    }
+        // Check if this is a new edge
+        bool edge_seen = false;
+        set<int, greater<int> >::iterator itr;
+        for (itr = adjacency_list[u].begin(); itr != adjacency_list[u].end(); itr++) {
+            int neighbor = *itr;
+            if (neighbor == v) {
+                edge_seen = true;
+                break;
+            }
+        }
 
-    // copying the lower half to it
-    for (int i = 0; i < n; i++) {
-        // amt we go until for lower half 
-        int amt = i + 1;
-        for (int j = 0; j < amt; j ++) {
-            directed_adj_matrix[j][i] = directed_adj_matrix[i][j];
+        printf("%d %d\n", u, v);
+
+        // Add if this is edge has not been seen
+        if (!edge_seen) {
+            adjacency_list[u].insert(v);
+            adjacency_list[v].insert(u);
+            num_edges_left--;
         }
     }
-    return directed_adj_matrix;
+
+    return adjacency_list;
 }
 
 // Need set to array function
@@ -173,7 +128,32 @@ set<int> arrayToSet(int* arr, int size) {
     return A;
 }
 
-set<int> luby_algorithm(int procID, int nproc, int n, int E, bool** adj_matrix) {
+void set_union_yes(set<int> &A, set<int> &B) {
+    set<int, greater<int> >::iterator itr;
+    for (itr = B.begin(); itr != B.end(); itr++) {
+        A.insert(*itr);
+    }
+}
+
+set<int> set_intersect(set<int> &A, set<int> &B) {
+    set<int, greater<int> >::iterator itr;
+    set<int> C;
+    for (itr = B.begin(); itr != B.end(); itr++) {
+        if ((A.count(*itr))){
+            C.insert(*itr);
+        }
+    }
+    return C;
+}
+
+void set_minus(set<int> &A, set<int>&B) {
+    set<int, greater<int> >::iterator itr;
+    for (itr = B.begin(); itr != B.end(); itr++) {
+        A.erase(*itr);
+    }
+}
+
+set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list) {
     set<int> A; 
     int* A_arr = (int*)calloc(BUFFER_LENGTH, sizeof(int));
     int* M = (int*)calloc(BUFFER_LENGTH, sizeof(int));
@@ -189,8 +169,8 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, bool** adj_matrix) 
     int M_prime_size;
     set<int> M_prime;
     while (lenA!= 0) {
-        float* random = calloc(lenA, sizeof(float));
-        float nc = pow(n, c);
+        float* random = (float*) calloc(lenA, sizeof(float));
+        int nc = pow(n, c);
         if (procID == root) {
             for (int i = 0; i < lenA; i++) {
                 random[i] = rand() % nc + 1;
@@ -203,23 +183,19 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, bool** adj_matrix) 
         if (lenA % nproc == 0) num_groups = lenA / nproc;
         else num_groups = lenA / nproc + 1;
         // Compare rv to all ru in N(v) and A and if rv is bigger, add v to M prime 
-        for (int group_idx = 0; group_idx < num_of_wires/nproc; group_idx ++) {
+        for (int group_idx = 0; group_idx < num_groups/nproc; group_idx ++) {
             int v = group_idx * nproc + procID; 
             bool flag = true;
-            for (int u = 0; u < n; u ++) { // Check all u in N(v)
-                if (adj_matrix[v][u] && random[v] <= random[u]) { // u is a neighbor
+
+            set<int> intersect = set_intersect(adj_list[v], A);
+            set<int, greater<int> >::iterator itr;
+            for (itr = intersect.begin(); itr != intersect.end(); itr++) { // Check all u in N(v)
+                if (random[v] <= random[*itr]) { // u is a neighbor
                     flag = false;
                     break; 
                 }
             }
-            for (int i = 0; i < lenA; i ++) { // Check all u in A
-                int u = A[i];
-                if (random[v] <= random[u]) { // u is a neighbor
-                    flag = false;
-                    break; 
-                }
-            }
-            if flag M_prime.insert(v) // Add v to M prime because it passes all checks
+            if (flag) M_prime.insert(v); // Add v to M prime because it passes all checks
         }
 
         // Use this source for set union: https://www.cplusplus.com/reference/algorithm/set_union/
@@ -227,10 +203,10 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, bool** adj_matrix) 
         // Use this source for set intersect: https://www.cplusplus.com/reference/algorithm/set_intersection/
 
         // Send M prime to root, who unions them all together and sets equal to M
-        
+        int* M_prime_arr;
         if (procID != root) {
-            M_prime_size = M_prime.size()
-            int* M_prime_arr = setToArray(M_prime);
+            M_prime_size = M_prime.size();
+            M_prime_arr = setToArray(M_prime);
              // Send size of set first 
             MPI_Send(&M_prime_size, 1, MPI_INT, root, 0, MPI_COMM_WORLD);
             MPI_Send(M_prime_arr, M_prime_size, MPI_INT, root, 0, MPI_COMM_WORLD);
@@ -238,15 +214,13 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, bool** adj_matrix) 
         } else {
             for (int i = root + 1; i < nproc; i ++) {
                 // Receive length first
-                MPI_Recv(&M_prime_size, 1, MPI_INT, i, 0, MPI_COMM_WORLD);
-                int* M_prime_arr = (int*) calloc(M_prime_size, sizeof(int));
+                MPI_Recv(&M_prime_size, 1, MPI_INT, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+                M_prime_arr = (int*) calloc(M_prime_size, sizeof(int));
                 // Receive Set 
-                MPI_Recv(M_prime_arr, M_prime_size, MPI_INT, i, 0, MPI_COMM_WORLD);
+                MPI_Recv(M_prime_arr, M_prime_size, MPI_INT, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
                 set<int> M_prime_received = arrayToSet(M_prime_arr, M_prime_size);
                 // Do a set union 
-                std::vector<int>::iterator it;
-                it=std::set_union (M_prime, M_prime+ M_prime.size(), M_prime_received, M_prime_received+M_prime_received.size(), M_prime.begin());
-                M_prime.resize(it-M_prime.begin());  
+                set_union_yes(M_prime, M_prime_received);
             }
         }
         if (procID == root) {
@@ -255,27 +229,26 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, bool** adj_matrix) 
             set<int> mPrimeNeighbors;
             set<int, greater<int> >::iterator itr;
             for (itr = M_prime.begin(); itr != M_prime.end(); itr++) {
-                for (int i = 0; i < n; i++){
-                    if adj_matrix[*itr][i] mPrimeNeighbors.insert(i);
+                set<int, greater<int> >::iterator itrTwo;
+                for (itrTwo = adj_list[*itr].begin(); itrTwo != adj_list[*itr].end(); itrTwo++){
+                    mPrimeNeighbors.insert(*itrTwo);
                 }
             }
-            set<int> temp; 
-            std::vector<int>::iterator it;
-            it=std::set_union (M_prime, M_prime+ M_prime.size(), mPrimeNeighbors, mPrimeNeighbors+mPrimeNeighbors.size(), temp.begin());
-            temp.resize(it-temp.begin()); 
+            set_union_yes(mPrimeNeighbors, M_prime);
 
             // Get Set intersection
-            it=std::set_intersection (temp, temp+temp.size(), A, A+A.size(), A.begin());
-            A.resize(it-A.begin());  
+            set_minus(A, mPrimeNeighbors);
             // Broadcast lenA 
             lenA = A.size();
-            A_arr = setToArray(A, lenA);
+            A_arr = setToArray(A);
 
         }
          MPI_Bcast(&lenA, 1, MPI_INT, root, MPI_COMM_WORLD);
          MPI_Bcast(&A_arr, lenA, MPI_INT, root, MPI_COMM_WORLD);
+         A = arrayToSet(A_arr, lenA);
         
     }
+    // Broadcast Final M to output
     int final_m;
     if (procID == root) {
         final_m = M_prime.size();
@@ -289,51 +262,51 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, bool** adj_matrix) 
 }
 
 
-int main(int argc, const char *argv[]) {
-    using namespace std::chrono;
-    typedef std::chrono::high_resolution_clock Clock;
-    typedef std::chrono::duration<double> dsec;
+// int main(int argc, const char *argv[]) {
+//     using namespace std::chrono;
+//     typedef std::chrono::high_resolution_clock Clock;
+//     typedef std::chrono::duration<double> dsec;
 
-    auto init_start = Clock::now();
-    double init_time = 0;
+//     auto init_start = Clock::now();
+//     double init_time = 0;
 
-    _argc = argc - 1;
-    _argv = argv + 1;
+//     _argc = argc - 1;
+//     _argv = argv + 1;
 
-    int n = get_option_int("-n", 10);
-    int E = get_option_int("-E", 100);
-    double a = get_option_float("-a", 0.1f);
-    double b = get_option_float("-b", 0.3f);
-    double d = get_option_float("-d", 0.3f);
+//     int n = get_option_int("-n", 10);
+//     int E = get_option_int("-E", 100);
+//     double a = get_option_float("-a", 0.1f);
+//     double b = get_option_float("-b", 0.3f);
+//     double d = get_option_float("-d", 0.3f);
 
-    printf("Number of Nodes: %d Number of Edges: %d\n", n, E);
-    printf("Probability Params: %lf %lf %lf.\n", a, b, d);
+//     printf("Number of Nodes: %d Number of Edges: %d\n", n, E);
+//     printf("Probability Params: %lf %lf %lf.\n", a, b, d);
 
-    // 1. Generate random graph (adjacency matrix format) using 
-    // R-MAT (random graph model due to Chakrabarti, Zhan and 
-    // Faloutsos, and used in the work of Blelloch, Fineman and 
-    // Shun)
-    // Description of R-MAT method available at:
-    // https://www.cs.cmu.edu/~christos/PUBLICATIONS/siam04.pdf
-    bool ** adj_matrix = generate_undirected_graph(n, E, a, b, d);
+//     // 1. Generate random graph (adjacency matrix format) using 
+//     // R-MAT (random graph model due to Chakrabarti, Zhan and 
+//     // Faloutsos, and used in the work of Blelloch, Fineman and 
+//     // Shun)
+//     // Description of R-MAT method available at:
+//     // https://www.cs.cmu.edu/~christos/PUBLICATIONS/siam04.pdf
+//     bool ** adj_matrix = generate_undirected_graph(n, E, a, b, d);
 
-    for (int i = 0; i < n; i ++) {
-        for (int j = 0; j < n; j ++) {
-            printf("%d ", adj_matrix[i][j]);
-        }
-        printf("\n");
-    }
+//     for (int i = 0; i < n; i ++) {
+//         for (int j = 0; j < n; j ++) {
+//             printf("%d ", adj_matrix[i][j]);
+//         }
+//         printf("\n");
+//     }
 
-    init_time += duration_cast<dsec>(Clock::now() - init_start).count();
-    printf("Initialization Time: %lf.\n", init_time);
+//     init_time += duration_cast<dsec>(Clock::now() - init_start).count();
+//     printf("Initialization Time: %lf.\n", init_time);
 
-    auto compute_start = Clock::now();
-    double compute_time = 0;
-
-
-    compute_time += duration_cast<dsec>(Clock::now() - compute_start).count();
-    printf("Computation Time: %lf.\n", compute_time);
+//     auto compute_start = Clock::now();
+//     double compute_time = 0;
 
 
-    return 0;
-}
+//     compute_time += duration_cast<dsec>(Clock::now() - compute_start).count();
+//     printf("Computation Time: %lf.\n", compute_time);
+
+
+//     return 0;
+// }
