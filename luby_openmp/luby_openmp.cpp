@@ -147,6 +147,7 @@ int main(int argc, const char *argv[]) {
     double a = get_option_float("-a", 0.1f);
     double b = get_option_float("-b", 0.3f);
     double d = get_option_float("-d", 0.3f);
+    int num_threads = get_option_int("-T", 1);
 
     printf("Number of Nodes: %d Number of Edges: %d\n", (1 << n), E);
     printf("Probability Params: %lf %lf %lf.\n", a, b, d);
@@ -176,6 +177,86 @@ int main(int argc, const char *argv[]) {
     auto compute_start = Clock::now();
     double compute_time = 0;
 
+    // Luby's algorithm
+    std::vector<int> active_vertices;
+    for (int i = 0; i < N; i++) active_vertices.push_back(i);
+    double * priorities = (double *) calloc(sizeof(double), N); // priorities for all vertices
+    bool * vertex_killed = (bool *) calloc(sizeof(bool), N); // either added to independent set,
+                                                             // or one of its neighbors has been added
+    bool * independent_set = (bool *) calloc(sizeof(bool), N); // true if this vertex is in the independent set
+
+    omp_set_num_threads(num_threads);
+    #pragma omp parallel shared(active_vertices, independent_set, adjacency_list) 
+    {
+        
+        // Create rng
+        std::random_device seed;
+        std::mt19937 mersenne_twister(seed());
+        std::uniform_real_distribution<double> rng(0.0, 1.0);
+
+        while (active_vertices.size() > 0) {
+
+            // 1. Assign priorities to each active vertex
+            // (Evenly divide the active vertices between threads)
+            int thread_num = omp_get_thread_num();
+            int num_active_per_thread = active_vertices.size()/num_threads;
+            uint start = thread_num * num_active_per_thread;
+            uint end = std::min(active_vertices.size(), (long unsigned int) (thread_num + 1) * num_active_per_thread);
+            for (uint idx = start; idx < end; idx++) {
+                int active_vertex = active_vertices[idx];
+                priorities[active_vertex] = rng(mersenne_twister);
+            }
+            #pragma omp barrier
+
+            // 2. Choose vertices in active set which have higher
+            // priority than their neighbors. Add those to the
+            // maximal independent set, and remove those and their
+            // neighbors from the active set.
+            for (uint idx = start; idx < end; idx++) {
+                int active_vertex = active_vertices[idx];
+                double p = priorities[active_vertex];
+                double max_neighbor_priority = 0.0;
+                for (uint neighbor_idx = 0; neighbor_idx < adjacency_list[active_vertex].size(); neighbor_idx++) {
+                    int neighbor = adjacency_list[active_vertex][neighbor_idx];
+                    double neighbor_priority = priorities[neighbor];
+                    max_neighbor_priority = std::max(max_neighbor_priority, neighbor_priority);
+                }
+                if (p > max_neighbor_priority) {
+                    // Add this vertex to independent set, and
+                    // kill this vertex and its neighbors
+                    independent_set[active_vertex] = true;
+                    vertex_killed[active_vertex] = true;
+                    for (uint neighbor_idx = 0; neighbor_idx < adjacency_list[active_vertex].size(); neighbor_idx++) {
+                        int neighbor = adjacency_list[active_vertex][neighbor_idx];
+                        vertex_killed[neighbor] = true;
+                    }
+                }
+            }
+            #pragma omp barrier
+
+            // 3. Thread 0 updates the active set
+            if (thread_num == 0) {
+                std::vector<int> new_active_vertices;
+                for (uint idx = 0; idx < active_vertices.size(); idx++) {
+                    int vertex = active_vertices[idx];
+                    if (!vertex_killed[vertex]) new_active_vertices.push_back(vertex);
+                }
+                active_vertices = new_active_vertices;
+            }
+            #pragma omp barrier
+        }
+    }
+
+    // Print out the maximal independent set
+    std::vector<int> maximal_independent_set;
+    printf("Vertices in maximal independent set: ");
+    for (int i = 0; i < N; i++) {
+        if (independent_set[i]) {
+            maximal_independent_set.push_back(i);
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
 
     compute_time += duration_cast<dsec>(Clock::now() - compute_start).count();
     printf("Computation Time: %lf.\n", compute_time);
