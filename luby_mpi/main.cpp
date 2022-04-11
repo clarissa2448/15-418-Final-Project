@@ -48,10 +48,6 @@ int main(int argc, char *argv[]) {
     int nproc;
     double startTime;
     double endTime;
-    double prob = 0.1;
-    int numIterations = 5;
-    char *inputFilename = NULL;
-    int opt = 0;
 
     // Initialize MPI
     MPI_Init(&argc, &argv);
