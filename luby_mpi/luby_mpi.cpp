@@ -15,8 +15,8 @@
 
 
 #define BUFFER_LENGTH 300000
-#define DEBUG false
-#define C 3
+#define DEBUG true
+#define PROB_POWER 3
   
 using namespace std;
 
@@ -32,7 +32,7 @@ using namespace std;
 // Returns:
 // An edge which may be added to the graph.
 std::pair<int, int> generate_edge(int i_start, int i_end, int j_start, int j_end,
-                                    double a, double b, double c, double d
+                                    double a, double b, double c, double d,
                                     std::uniform_real_distribution<double>& rng, std::mt19937& mersenne_twister) {
     
     if (i_end == i_start + 1 && j_end == j_start + 1) return std::make_pair(i_start, j_start);
@@ -79,6 +79,11 @@ set<int> * generate_rmat_graph(int n, int E, double a, double b, double d) {
 
     int N = (1 << n); // number of vertices
     set<int> * adjacency_list = (std::set<int> *) calloc(N, sizeof(set<int>));
+    for (int i = 0; i < N; i++) {
+        set<int> s;
+        adjacency_list[i] = s;
+    }
+
     int num_edges_left = E;
     while (num_edges_left > 0) {
         std::pair<int, int> new_edge = generate_edge(0, N, 0, N, a, b, c, d, rng, mersenne_twister);
@@ -87,9 +92,7 @@ set<int> * generate_rmat_graph(int n, int E, double a, double b, double d) {
         if (u < v) continue; // Ignore all the edges that are above the main diagonal.
 
         // Check if this is a new edge
-        if (adjacency_list[u].contains(v)) continue;
-
-        if (DEBUG) printf("%d %d\n", u, v);
+        if (adjacency_list[u].count(v)) continue;
 
         adjacency_list[u].insert(v);
         adjacency_list[v].insert(u);
@@ -102,8 +105,9 @@ set<int> * generate_rmat_graph(int n, int E, double a, double b, double d) {
 int* setToArray(set<int> s) {
     int* arr = (int*) calloc(s.size(), sizeof(int));
     int idx = 0;
-    for (set<int>::iterator iter = s.begin(); iter < s.end(); iter++) {
-        arr[idx] = *iter;
+    set<int, greater<int>>::iterator itr;
+    for (itr = s.begin(); itr != s.end(); itr++) {
+        arr[idx] = *itr;
         idx++;
     }
     return arr;
@@ -136,11 +140,32 @@ set<int> set_intersect(set<int> &A, set<int> &B) {
     return C;
 }
 
+// Returns A \ B
+set<int> set_minus(set<int> A, set<int> B) {
+    set<int> result;
+    set<int, greater<int>>::iterator itr;
+    for (itr = A.begin(); itr != A.end(); itr++) {
+        if (B.count(*itr)) continue;
+        result.insert(*itr);
+    }
+    return result;
+}
+
+/*
 void set_minus(set<int> &A, set<int>&B) {
     set<int, greater<int> >::iterator itr;
     for (itr = B.begin(); itr != B.end(); itr++) {
         A.erase(*itr);
     }
+}
+*/
+
+void print_set(set<int> A) {
+    set<int, greater<int>>::iterator itr;
+    for (itr = A.begin(); itr != A.end(); itr++) {
+        printf("%d ", *itr);
+    }
+    printf("\n");
 }
 
 // See Algorithm 2 at http://web.mit.edu/jeshi/www/public/papers/parallel_MIS_survey.pdf
@@ -156,21 +181,33 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list
     }
 
     set<int> maximal_independent_set;
+    int * maximal_independent_set_array;
     while (active_set.size() > 0) {
+
         // 1. Assign random priorities to all of the vertices in the active set.
-        // TODO: Parallelize assignment of random priorities to vertices.
-        int nc = pow(n, C);
-        float* random = (float *) calloc(active_set.size(), sizeof(float));
+        // TODO: Parallelize this assignment.
+        int nc = pow(n, PROB_POWER);
+        float * random = (float *) calloc(N, sizeof(float));
+        active_set_array = (int *) calloc(active_set.size(), sizeof(int));
         if (procID == root) {
-            for (int i = 0; i < active_set.size(); i++) {
-                random[i] = rand() % nc + 1;
+            for (int i = 0; i < N; i++) {
+                if (active_set.count(i)) random[i] = rand() % nc + 1;
+            }
+
+            std::set<int, greater<int>>::iterator itr;
+            int idx = 0;
+            for (itr = active_set.begin(); itr != active_set.end(); itr++) {
+                active_set_array[idx] = *itr;
+                idx++;
             }
         }
 
-        // 2. Communicate the random priorities to all the vertices.
-        // TODO: Instead of broadcasting, only communicate the priorities
-        // to the neighbors and see how much this helps.
-        MPI_Bcast(random, active_set.size(), MPI_FLOAT, root, MPI_COMM_WORLD);
+        // 2. Communicate the random priorities (and vertex-index pairs) to all
+        // the vertices.
+        // TODO: Instead of communicating the entire array, only communicate the
+        // priorities to the neighbors and see how much this helps.
+        MPI_Bcast(random, N, MPI_FLOAT, root, MPI_COMM_WORLD);
+        MPI_Bcast(active_set_array, active_set.size(), MPI_INT, root, MPI_COMM_WORLD);
 
         // 3. For each vertex in the active set, compare its priority to that
         // of its neighbors and add it to the maximal independent set if its
@@ -179,12 +216,13 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list
         if (active_set.size() % nproc == 0) vertices_per_group = active_set.size() / nproc;
         else vertices_per_group = active_set.size() / nproc + 1;
         int start = vertices_per_group * procID;
-        int end = std::min(N, vertices_per_group * (procID + 1));
-        for (int v = start; v < end; v++) {
+        int end = vertices_per_group * (procID + 1);
+        for (int idx = start; idx < end; idx++) {
+            int v = active_set_array[idx];
             bool flag = true;
-            set<int> neighbors = set_intersect(adj_list[v], A);
+            set<int> neighbors = set_intersect(adj_list[v], active_set);
             set<int, greater<int>>::iterator itr;
-            for (itr = intersect.begin(); itr != intersect.end(); itr++) { 
+            for (itr = neighbors.begin(); itr != neighbors.end(); itr++) {
                 // Check all u in N(v)
                 if (random[v] <= random[*itr]) {
                     flag = false;
@@ -200,7 +238,6 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list
         // TODO: Use gather to collect the newly added vertices at the root
         // (or use a tree instead of directly communicating with root)
         int set_size;
-        int * maximal_independent_set_array;
         if (procID != root) {
             set_size = maximal_independent_set.size();
             maximal_independent_set_array = setToArray(maximal_independent_set);
@@ -228,7 +265,7 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list
         if (procID == root) maximal_independent_set_array = setToArray(maximal_independent_set);
         else maximal_independent_set_array = (int *) calloc(set_size, sizeof(int));
         MPI_Bcast(&maximal_independent_set_array, set_size, MPI_INT, root, MPI_COMM_WORLD);
-        maximal_independent_set = arrayToSet(maximal_independent_set_array);
+        maximal_independent_set = arrayToSet(maximal_independent_set_array, set_size);
 
         // 6. Process 0 computes the new active set and broadcasts this as well.
         int active_set_size;
@@ -243,9 +280,11 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list
                 }
                 killed_vertices.insert(*itr);
             }
+            if (DEBUG) printf("Current active set: ");
+            if (DEBUG) print_set(active_set);
 
             // Remove killed_vertices from active set
-            set_minus(active_set, killed_vertices);
+            active_set = set_minus(active_set, killed_vertices);
             active_set_size = active_set.size();
             active_set_array = setToArray(active_set);
         }

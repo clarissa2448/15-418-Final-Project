@@ -69,7 +69,9 @@ int main(int argc, char *argv[]) {
     // https://www.cs.cmu.edu/~christos/PUBLICATIONS/siam04.pdf
     set<int> * adj_list = generate_rmat_graph(n, E, a, b, d);
 
-    for (int i = 0; i < n; i ++) {
+    int N = (1 << n);
+    for (int i = 0; i < N; i ++) {
+        printf("%d: ", i);
         for (auto itr = adj_list[i].begin(); itr != adj_list[i].end(); itr ++) {
             printf("%d ", *itr);
         }
@@ -81,6 +83,8 @@ int main(int argc, char *argv[]) {
 
     // Get total number of processes specificed at start of run
     MPI_Comm_size(MPI_COMM_WORLD, &nproc);
+
+    printf("Num processors: %d\n", nproc);
 
     // Run computation
     startTime = MPI_Wtime();
