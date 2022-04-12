@@ -79,3 +79,28 @@ We will proceed according to the following schedule:
 
 ### Week of April 25th:
 - Select one other known strategy for graph partitioning and modify the MPI implementation to use it (Clarissa and Arvind)
+
+### MPI Results Midway
+| n | E  | time  |
+| :---:   | :-: | :-: |
+| 10 | 2048 | 0.01 |
+| 10 | 4096 | 0.01 |
+| 10 | 131072 | 0.075 |
+| 10 | 251072 | 0.201 |
+| 10 | 520000 | 1.27 |
+| 12 | 2048 | 0.01 |
+| 12 | 130000 | 0.32 |
+| 12 | 160000 | 0.37 |
+| 12 | 240000 | 0.44 |
+| 12 | 300000 | 0.51 |
+| 12 | 500000 | 0.66 |
+| 12 | 750000 | 0.84 |
+| 12 | 1000000 | 1.13 | 
+| 12 | 2000000 | 1.41 | 
+| 12 | 4000000 | 2.65 | 
+| 14 | 100000 | 2.251654| 
+| 14 | 500000 | 3.66| 
+| 14 | 1000000 | 5| 
+| 14 | 2000000 | 6.47| 
+| 14 | 4000000 | 8.43| 
+| 14 | 10000000 | 12.4| 
