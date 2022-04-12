@@ -45,3 +45,37 @@ If we make rapid progress on the above goals, we will empirically evaluate the f
 # References
 - Shi, Wang and Shang's survey [http://web.mit.edu/jeshi/www/public/papers/parallel_MIS_survey.pdf](http://web.mit.edu/jeshi/www/public/papers/parallel_MIS_survey.pdf)
 - Guy E. Blelloch, Jeremy T. Fineman, Julian Shun. Greedy Sequential Maximal Independent Set and Matching are Parallel on Average. Published in SPAA 2012. [https://arxiv.org/pdf/1202.3205.pdf](https://arxiv.org/pdf/1202.3205.pdf)
+
+# Milestone
+
+## Work completed so far
+
+We have decided to implement Luby's algorithm, and apply optimizations which may lead to good speedup. We chose Luby's algorithm since it is a classical parallel algorithm for this problem. There exist later algorithms such as that of Blelloch, Fineman, and Shun, but we choose Luby's algorithm due to its conceptual simplicity, as it has less parameters.
+
+We used the [R-MAT](https://www.cs.cmu.edu/~christos/PUBLICATIONS/siam04.pdf) random graph model of Chakrabarti, Faloutsos and Zhan as our input dataset. We also have a preliminary implementation of Luby's algorithm in MPI. Our implementation is as follows:
+- First, process 0 assigns random priorities to all vertices sequentially.
+- Then, the entire array of priorities is communicated to all processes.
+- Each process deals with a subset of the vertices in the active set (i.e. those which can still be added to the independent set). If these have higher priorities than their neighbors, then they are added to the process's independent set.
+- The processes then combine their independent sets.
+- Process 0 then computes the new active set and sends it to the rest.
+
+## Progress on goals and deliverables, and updated schedule
+
+We have a working MPI implementation of Luby's algorithm (which was originally our goal for the current week), though our implementation can be made more efficient. In particular, the assignment of random priorities to active vertices should be parallelized. In addition, instead of broadcasting the random priorities of all active vertices to all the processes, we can have communication only when it is necessary. In other words, we will partition the vertices between the processes, such that if a process is responsible for a vertex v that is in the active set, then this process will only communicate the priority of v to the processes which are responsible for the neighbors of v. The process which is responsible for v will also be the one to assign a priority to v.
+
+We will proceed according to the following schedule:
+
+### Second half of the week of April 11th:
+- Implement a sequential greedy algorithm for maximal independent set (Arvind)
+- Improve MPI implementation of Luby's algorithm so that in each iteration, only the new vertices added to the independent sets in that round are communicated (Clarissa)
+
+### First half of the week of April 18th:
+- Modify MPI implementation of Luby's algorithm so that each process is responsible for a contiguous subset of the vertices from 1 to N. This strategy may lead to better cache behavior. (Arvind)
+- Read papers on graph partitioning to select an additional strategy (Clarissa and Arvind)
+
+### Second half of the week of April 18th:
+- Modify MPI implementation of Luby's algorithm so that after each iteration, the vertices in the active set are divided evenly between processes. The strategy may lead to more balanced workload. (Clarissa)
+- Read papers on graph partitioning to select additional strategy (Clarissa and Arvind)
+
+### Week of April 25th:
+- Select one other known strategy for graph partitioning and modify the MPI implementation to use it (Clarissa and Arvind)
