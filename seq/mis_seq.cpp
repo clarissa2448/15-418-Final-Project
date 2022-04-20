@@ -141,8 +141,9 @@ set<int> sequential_mis(int n, int E, set<int> * G, set<int> & avail) {
 }
 
 int main(int argc, char *argv[]) {
-    // double startTime;
-    // double endTime;
+    using namespace std::chrono;
+    typedef std::chrono::high_resolution_clock Clock;
+    typedef std::chrono::duration<double> dsec;
 
     int n = get_option_int("-n", 10, argc, argv);
     int E = get_option_int("-E", 100, argc, argv);
@@ -174,10 +175,14 @@ int main(int argc, char *argv[]) {
     set<int> avail;
     for (int i = 0; i < 1<<n; i++)
         avail.insert(avail.end(), i);
+    
+    auto start = Clock::now();
     set<int> res = sequential_mis(n, E, adj_list, avail);
+    double end = duration_cast<dsec>(Clock::now() - start).count();
+
     for (auto itr = res.begin(); itr != res.end(); itr++)
         printf("res vert %d\n", *itr);
     
-    // printf("Elapsed time: %f\n", endTime - startTime);
+    printf("Elapsed time: %f\n", end);
     return 0;
 }

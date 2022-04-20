@@ -11,6 +11,7 @@
 #include <iostream>
 #include <vector>
 #include <set>
+#include <chrono>
 
 #define BUFFER_LENGTH 300000
 #define DEBUG false
@@ -254,6 +255,9 @@ set<int> luby_algorithm(int n, int E, set<int> * adj_list) {
 }
 
 int main(int argc, char *argv[]) {
+    using namespace std::chrono;
+    typedef std::chrono::high_resolution_clock Clock;
+    typedef std::chrono::duration<double> dsec;
     // double startTime;
     // double endTime;
 
@@ -283,7 +287,9 @@ int main(int argc, char *argv[]) {
         }
         printf("\n");
     }
+    auto start = Clock::now();
     set<int> M = luby_algorithm(n, E, adj_list);
+    double end = duration_cast<dsec>(Clock::now() - start).count();
 
     printf("Nodes in Maximal Independent Set\n");
     set<int, greater<int> >::iterator itr;
@@ -292,6 +298,6 @@ int main(int argc, char *argv[]) {
     }
     printf("\n");
     
-    // printf("Elapsed time: %f\n", endTime - startTime);
+    printf("Elapsed time: %f\n", end);
     return 0;
 }
