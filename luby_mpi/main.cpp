@@ -2,6 +2,7 @@
 
 #include "mpi.h"
 #include "luby_mpi.h"
+#include "luby_mpi_blocked_assignment.h"
 #include <unistd.h>
 #include <assert.h>
 #include <algorithm> 
@@ -29,10 +30,11 @@ const char *get_option_string(const char *option_name, const char *default_value
     return default_value;
 }
 
-int get_option_int(const char *option_name, int default_value) {
-    for (int i = _argc - 2; i >= 0; i -= 2)
+int get_option_int(const char *option_name, int default_value, int _argc, char **_argv) {
+  for (int i = _argc - 2; i >= 0; i -= 2){
         if (strcmp(_argv[i], option_name) == 0)
             return atoi(_argv[i + 1]);
+    }
     return default_value;
 }
 
@@ -49,17 +51,19 @@ int main(int argc, char *argv[]) {
     double startTime;
     double endTime;
 
-    // Initialize MPI
-    MPI_Init(&argc, &argv);
-
-    int n = get_option_int("-n", 10);
-    int E = get_option_int("-E", 100);
+    int n = get_option_int("-n", 10, argc, argv);
+    int E = get_option_int("-E", 100, argc, argv);
     double a = get_option_float("-a", 0.1f);
     double b = get_option_float("-b", 0.3f);
     double d = get_option_float("-d", 0.3f);
+    int version = get_option_int("-v", 1, argc, argv);
 
     printf("Number of Nodes: %d Number of Edges: %d\n", n, E);
     printf("Probability Params: %lf %lf %lf.\n", a, b, d);
+    printf("Version: %d\n", version);
+
+    // Initialize MPI
+    MPI_Init(&argc, &argv);
 
     // 1. Generate random graph (adjacency matrix format) using 
     // R-MAT (random graph model due to Chakrabarti, Zhan and 
@@ -70,6 +74,7 @@ int main(int argc, char *argv[]) {
     set<int> * adj_list = generate_rmat_graph(n, E, a, b, d);
 
     int N = (1 << n);
+    /*
     for (int i = 0; i < N; i ++) {
         printf("%d: ", i);
         for (auto itr = adj_list[i].begin(); itr != adj_list[i].end(); itr ++) {
@@ -77,6 +82,7 @@ int main(int argc, char *argv[]) {
         }
         printf("\n");
     }
+    */
 
     // Get process rank
     MPI_Comm_rank(MPI_COMM_WORLD, &procID);
@@ -88,14 +94,18 @@ int main(int argc, char *argv[]) {
 
     // Run computation
     startTime = MPI_Wtime();
-    set<int> M = luby_algorithm(procID, nproc, n, E, adj_list);
+    set<int> M;
+    if (version == 1) luby_algorithm(procID, nproc, n, E, adj_list);
+    else luby_algorithm_blocked_assignment(procID, nproc, n, E, adj_list);
     endTime = MPI_Wtime();
 
+    /*
     printf("Nodes in Maximal Independent Set\n");
     set<int, greater<int> >::iterator itr;
     for (itr = M.begin(); itr != M.end(); itr++) {
         printf("%d ", *itr);
     }
+    */
 
     // Cleanup
     MPI_Finalize();

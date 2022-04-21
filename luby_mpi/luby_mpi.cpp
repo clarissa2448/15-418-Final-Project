@@ -15,7 +15,7 @@
 
 
 #define BUFFER_LENGTH 300000
-#define DEBUG true
+#define DEBUG false
 #define PROB_POWER 3
   
 using namespace std;
@@ -89,7 +89,7 @@ set<int> * generate_rmat_graph(int n, int E, double a, double b, double d) {
         std::pair<int, int> new_edge = generate_edge(0, N, 0, N, a, b, c, d, rng, mersenne_twister);
         int u = new_edge.first;
         int v = new_edge.second;
-        if (u < v) continue; // Ignore all the edges that are above the main diagonal.
+        if (u <= v) continue; // Ignore all the edges that are above the main diagonal.
 
         // Check if this is a new edge
         if (adjacency_list[u].count(v)) continue;
@@ -186,7 +186,7 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list
 
         // 1. Assign random priorities to all of the vertices in the active set.
         // TODO: Parallelize this assignment.
-        int nc = pow(n, PROB_POWER);
+        int nc = pow(N, PROB_POWER);
         float * random = (float *) calloc(N, sizeof(float));
         active_set_array = (int *) calloc(active_set.size(), sizeof(int));
         if (procID == root) {

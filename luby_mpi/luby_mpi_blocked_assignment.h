@@ -16,11 +16,9 @@
 
 using namespace std;
 
-#ifndef _LUBY_MPI_H
-#define _LUBY_MPI_H
+#ifndef LUBY_MPI_BLOCKED_H
+#define LUBY_MPI_BLOCKED_H
 
-set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list);
-set<int> * generate_rmat_graph(int n, int E, double a, double b, double d);
-set<int> arrayToSet(int* arr, int size); 
-int* setToArray(set<int> s);
-#endif // _LUBY_MPI_H
+set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, set<int> * adj_list);
+
+#endif
