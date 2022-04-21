@@ -9,6 +9,7 @@
 #include <vector>
 #include <random>
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <set>
 #include <chrono>
@@ -93,6 +94,37 @@ void print_set(set<int> A) {
         printf("%d ", *itr);
     }
     printf("\n");
+}
+
+
+// Write Input Adjacency List to File
+void write_adj_list_to_file(set<int>* adj_list, int n, int E, int nproc) {
+    ofstream adj_list_file;
+    int N = 1 << n;
+    char buffer[BUFFER_LENGTH];
+    snprintf(buffer, BUFFER_LENGTH, "outputs/adj_list_%d_%d_%d.txt", n, E, nproc);
+    adj_list_file.open(buffer);
+    for (int i = 0; i < N; i++) {
+        for (auto j = adj_list[i].begin(); j != adj_list[i].end(); j++) {
+            adj_list_file << *j << " ";
+        }
+        adj_list_file << "\n";
+
+        
+    }
+    adj_list_file.close();
+}
+
+// Write Output Independent Set to File
+void write_mis_to_file(set<int> mis, int n, int E, int nproc) {
+    ofstream mis_file;
+    char buffer[BUFFER_LENGTH];
+    snprintf(buffer, BUFFER_LENGTH, "outputs/maximal_indep_set_%d_%d_%d.txt", n, E, nproc);
+    mis_file.open(buffer);
+    for (auto j = mis.begin(); j != mis.end(); j++) {
+        mis_file << *j << "\n";
+    }
+    mis_file.close();
 }
 
 // Parameters:
@@ -297,6 +329,9 @@ int main(int argc, char *argv[]) {
         printf("%d ", *itr);
     }
     printf("\n");
+
+    write_adj_list_to_file(adj_list, n, E, 1);
+    write_mis_to_file(M, n, E, 1);
     
     printf("Elapsed time: %f\n", end);
     return 0;
