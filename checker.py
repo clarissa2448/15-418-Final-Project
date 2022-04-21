@@ -16,7 +16,7 @@ Arguments:
   -i INPUT              Input adjacency List
   -o OUTPUT             Outputted independent set
   -n n                  2^n nodes
-  -e e                  e edges
+  -E e                  e edges
 '''
 
 def parse_args():
@@ -24,13 +24,13 @@ def parse_args():
     if '-h' in args or '--help' in args:
         print(help_message)
         sys.exit(1)
-    if '-o' not in args or '-n' not in args or '-e' not in args or '-i' not in args:
+    if '-o' not in args or '-n' not in args or '-E' not in args or '-i' not in args:
         print(help_message)
         sys.exit(1)
     parsed = {}
     parsed['output'] = args[args.index('-o') + 1]
     parsed['n'] = args[args.index('-n') + 1]
-    parsed['e'] = args[args.index('-e') + 1]
+    parsed['E'] = args[args.index('-E') + 1]
     parsed['input'] = args[args.index('-i') + 1]
     return parsed
 
@@ -43,7 +43,8 @@ def validate(args):
     # Parse Files to Construct graph and independent set
     n = int(args['n'])
     N = 2 ** n
-    E = args['e']
+    
+    E = args['E']
     output = open(args['output'], 'r')
     lines = output.readlines()
     if len(lines) < 1:

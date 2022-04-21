@@ -16,7 +16,7 @@
 
 
 #define BUFFER_LENGTH 300000
-#define DEBUG true
+#define DEBUG false
 #define PROB_POWER 3
   
 using namespace std;
@@ -109,13 +109,16 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
             set<int, greater<int>>::iterator itr;
             for (itr = u_neighbors.begin(); itr != u_neighbors.end(); itr++) {
                 int v = *itr;
-                if (u < v) edge_list.push_back(std::make_pair(u, v));
-                else edge_list.push_back(std::make_pair(v, u));
+                edge_list.push_back(std::make_pair(u, v));
             }
         }
         std::sort(edge_list.begin(), edge_list.end(), [](edge a, edge b){
-            if (a.first < b.first) return true;
-            else if (a.first == b.first) return a.second < b.second;
+            float minA = min(a.first, a.second); 
+            float minB = min(b.first, b.second);
+            float maxA = max(a.first, a.second); 
+            float maxB = max(b.first, b.second);
+            if (minA < minB) return true;
+            else if (minA == minB) return maxA < maxB;
             else return false;
         });
 
@@ -127,7 +130,10 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
             int v = e.second;
             int u_process = u / vertices_per_process;
             int v_process = v / vertices_per_process;
-            if (v_process == procID) {
+
+
+            if (v_process == procID && u_process == procID) {
+                if (DEBUG) printf("PROCID: %d, V process = procID | v_process: %d | u: %d | v: %d \n", procID, v_process, u, v);
                 // Swap u and v - at this point, we can assume
                 // that u belongs to procID.
                 e = std::make_pair(v, u);
@@ -135,26 +141,30 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
                 v = e.second;
                 u_process = u / vertices_per_process;
                 v_process = v / vertices_per_process;
-            }
-
-            if (v_process == procID)
                 max_priority_of_neighbors[u - start] = std::max(max_priority_of_neighbors[u - start], random[v - start]);
+            }
             else if (u < v) {
+                
                 // First send u's priority to v_process, then
                 // receive v's priority from v_process.
                 float communicated_priority = random[u - start];
+                if (DEBUG) printf("PROCID: %d, u < v | v_process: %d | u: %d v: %d, priority: %f \n", procID, v_process, u, v, communicated_priority);
                 MPI_Send(&communicated_priority, 1, MPI_FLOAT, v_process, 0, MPI_COMM_WORLD);
                 MPI_Recv(&communicated_priority, 1, MPI_FLOAT, v_process, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
                 max_priority_of_neighbors[u - start] = std::max(max_priority_of_neighbors[u - start], communicated_priority);
+                if (DEBUG) printf("ProcID: %d, Received priority: %f\n", procID, communicated_priority);
             }
-            else {
+            else if (u > v) {
+                if (DEBUG) printf("PROCID: %d u >= v | v_process: %d | u: %d | v: %d \n", procID, v_process, u, v);
                 // First receive v's priority from v_process, then
                 // send u's priority to v_process.
                 float communicated_priority;
                 MPI_Recv(&communicated_priority, 1, MPI_FLOAT, v_process, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+                if (DEBUG) printf("procID: %d, Received priority: %f\n", procID, communicated_priority);
                 max_priority_of_neighbors[u - start] = std::max(max_priority_of_neighbors[u - start], communicated_priority);
                 communicated_priority = random[u - start];
                 MPI_Send(&communicated_priority, 1, MPI_FLOAT, v_process, 0, MPI_COMM_WORLD);
+                if (DEBUG) printf("procID: %d, Sent priority: %f\n", procID, communicated_priority);
             }
         }
 
@@ -256,7 +266,7 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
                     active_set_neighbors[neighbor - start].erase(removed_vertex);
                 }
             }
-            if (i < procID) {
+            else if (i < procID) {
                 // First receive the vertices from process i which are
                 // neighbors of this process. array_to_receive_neighbors
                 // contains a vertex u in process i, followed by its
@@ -312,6 +322,7 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
                 }
             }
         }
+        // break;
     }
 
     // Gather the independent set.
@@ -354,8 +365,6 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
         MPI_INT,
         MPI_COMM_WORLD
     );
-
-    printf("Running blocked assignment\n");
 
     // Convert final overall independent set to a set.
     set<int> result;
