@@ -74,10 +74,29 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
 
     int* array_to_receive_neighbors = (int *) calloc(2 * N, sizeof(int));
 
+    // Timing
+    // 1. Count vertices in active set.
+    double total_time_step1 = 0;
+    // 2. Assignment of random priorities.
+    double total_time_step2 = 0;
+    // 3. Creating sorted list of edges.
+    double total_time_step3 = 0;
+    // 4. Computing max priority out of all neighbors.
+    double total_time_step4 = 0;
+    // 5. Determine which vertices should be added to independent set.
+    double total_time_step5 = 0;
+    // 6. Communicate newly added vertices to all processes.
+    double total_time_step6 = 0;
+    // 7. Update active_set.
+    double total_time_step7 = 0;
+    // 8. Update active_set_neighbors.
+    double total_time_step8 = 0;
+
     while (true) {
 
         // 1. First determine the number of vertices in the active
         // set across all of the processes.
+        double time_inc_start = MPI_Wtime();
         int local_active_set_count = 0;
         for (int i = start; i < end; i++) {
             if (active_set[i - start]) local_active_set_count++;
@@ -86,6 +105,8 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
         MPI_Reduce(&local_active_set_count, &overall_active_set_count, 1, MPI_INT, MPI_SUM, root, MPI_COMM_WORLD);
         MPI_Bcast(&overall_active_set_count, 1, MPI_INT, root, MPI_COMM_WORLD);
         if (overall_active_set_count == 0) break;
+        double time_inc = MPI_Wtime() - time_inc_start;
+        total_time_step1 += time_inc;
 
         if (DEBUG) {
             printf("active set: ");
@@ -96,12 +117,16 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
         }
 
         // 2. Assign random priorities to all vertices in the active set.
+        time_inc_start = MPI_Wtime();
         for (int i = start; i < end; i++) {
             if (active_set[i - start]) random[i - start] = rand() % NC + 1;
         }
+        time_inc = MPI_Wtime() - time_inc_start;
+        total_time_step2 += time_inc;
 
         // 3. Create a list of edges (u, v) where u < v, sorted
         // first by u and then by v.
+        time_inc_start = MPI_Wtime();
         std::vector<edge> edge_list;
         for (int u = start; u < end; u++) {
             if (!active_set[u - start]) continue;
@@ -121,9 +146,12 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
             else if (minA == minB) return maxA < maxB;
             else return false;
         });
+        time_inc = MPI_Wtime() - time_inc_start;
+        total_time_step3 += time_inc;
 
         // 4. Iterate through the edges in edge_list and update
         // max_priority_of_neighbors.
+        time_inc_start = MPI_Wtime();
         for (int i = 0; i < edge_list.size(); i++) {
             edge e = edge_list[i];
             int u = e.first;
@@ -167,9 +195,12 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
                 if (DEBUG) printf("procID: %d, Sent priority: %f\n", procID, communicated_priority);
             }
         }
+        time_inc = MPI_Wtime() - time_inc_start;
+        total_time_step4 += time_inc;
 
         // 5. Determine which vertices are going to be newly
         // added to the independent set.
+        time_inc_start = MPI_Wtime();
         std::vector<int> newly_added_to_independent_set;
         for (int u = start; u < end; u++) {
             if (!active_set[u - start]) continue;
@@ -180,15 +211,17 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
             active_set[u - start] = false;
             newly_added_to_independent_set.push_back(u);
         }
+        time_inc = MPI_Wtime() - time_inc_start;
+        total_time_step5 += time_inc;
 
-        // 4. Gather all the newly added to independent sets at root:
+        // 6. Gather all the newly added vertices at root
+        // and communicate those to all the processes.
+        time_inc_start = MPI_Wtime();
         int newly_added_to_independent_set_size = newly_added_to_independent_set.size();
         int * newly_added_to_independent_set_array = (int *) calloc(newly_added_to_independent_set_size, sizeof(int));
         for (int i = 0; i < newly_added_to_independent_set_size; i++) {
             newly_added_to_independent_set_array[i] = newly_added_to_independent_set[i];
         }
-
-        /////////////////////////////////////////////////////////
 
         // Send the size of independent set to root 
         MPI_Gather(
@@ -226,9 +259,14 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
         // Root sends independent set to everyone
         MPI_Bcast(&prefix_sum, 1, MPI_INT, root, MPI_COMM_WORLD);
         MPI_Bcast(larger_independent_set, prefix_sum, MPI_INT, root, MPI_COMM_WORLD);
+        time_inc = MPI_Wtime() - time_inc_start;
+        total_time_step6 += time_inc;
 
-        // Update the active set
-        // Each process goes through the larger independent set and go throughs all vertices newly added to independent set and sees if it's a neighbor of u
+        // 7. Update the active set
+        // Each process goes through the larger independent set 
+        // and go throughs all vertices newly added to independent set 
+        // and sees if it's a neighbor of u
+        time_inc_start = MPI_Wtime();
         std::vector<int> newly_removed_from_active_set;
         for (int u = start; u < end; u ++) {
             for (int i = 0; i < prefix_sum; i ++) {
@@ -239,8 +277,14 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
                 }
             }
         }
+        time_inc = MPI_Wtime() - time_inc_start;
+        total_time_step7 += time_inc;
         
-        // Update the active set neighbors
+        // 8. Update active_set_neighbors. First determine
+        // vertices in this process which are removed from
+        // the independent set, then for each other process i,
+        // send the removed vertices which are neighbors of i.
+        time_inc_start = MPI_Wtime();
         for (int i = 0; i < nproc; i++) {
             removed_neighbors_from_active_set[i].clear();
             vertex_in_other_process[i].clear();
@@ -322,8 +366,19 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
                 }
             }
         }
-        // break;
+        time_inc = MPI_Wtime() - time_inc_start;
+        total_time_step8 += time_inc;
     }
+
+    // Running time
+    printf("Process: %d, time for step %d: %f\n", procID, 1, total_time_step1);
+    printf("Process: %d, time for step %d: %f\n", procID, 2, total_time_step2);
+    printf("Process: %d, time for step %d: %f\n", procID, 3, total_time_step3);
+    printf("Process: %d, time for step %d: %f\n", procID, 4, total_time_step4);
+    printf("Process: %d, time for step %d: %f\n", procID, 5, total_time_step5);
+    printf("Process: %d, time for step %d: %f\n", procID, 6, total_time_step6);
+    printf("Process: %d, time for step %d: %f\n", procID, 7, total_time_step7);
+    printf("Process: %d, time for step %d: %f\n", procID, 8, total_time_step8);
 
     // Gather the independent set.
     int local_ind_set_size = 0;

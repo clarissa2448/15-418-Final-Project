@@ -175,7 +175,6 @@ int main(int argc, char *argv[]) {
         }
     }
 
-
     // Run computation
     startTime = MPI_Wtime();
     set<int> M;
