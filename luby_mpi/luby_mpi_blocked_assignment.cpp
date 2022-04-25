@@ -72,7 +72,7 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
     std::vector<int> * removed_neighbors_from_active_set = (std::vector<int> *) calloc(nproc, sizeof(std::vector<int>)); 
     std::vector<int> * vertex_in_other_process = (std::vector<int> *) calloc(nproc, sizeof(std::vector<int>));
 
-    int* array_to_receive_neighbors = (int *) calloc(2 * N, sizeof(int));
+    int* array_to_receive_neighbors = (int *) calloc(2 * E, sizeof(int));
 
     // Timing
     // 1. Count vertices in active set.
@@ -394,7 +394,7 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
 
     int local_idx = 0;
     for (int u = start; u < end; u++) {
-        if (independent_set[u]) {
+        if (independent_set[u - start]) {
             final_local_independent_set[local_idx] = u;
             local_idx++;
         }
