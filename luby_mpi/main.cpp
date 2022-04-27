@@ -3,6 +3,7 @@
 #include "mpi.h"
 #include "luby_mpi.h"
 #include "luby_mpi_blocked_assignment.h"
+#include "luby_mpi_blocked_assignment_async.h"
 #include <unistd.h>
 #include <assert.h>
 #include <algorithm> 
@@ -179,7 +180,8 @@ int main(int argc, char *argv[]) {
     startTime = MPI_Wtime();
     set<int> M;
     if (version == 1) M = luby_algorithm(procID, nproc, n, E, adj_list);
-    else M = luby_algorithm_blocked_assignment(procID, nproc, n, E, adj_list);
+    else if (version == 2) M = luby_algorithm_blocked_assignment(procID, nproc, n, E, adj_list);
+    else if (version == 3) M = luby_algorithm_blocked_assignment_async(procID, nproc, n, E, adj_list);
     endTime = MPI_Wtime();
 
     if (DEBUG)
