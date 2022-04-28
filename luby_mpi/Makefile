@@ -1,6 +1,8 @@
 APP_NAME=luby_mpi
 OBJS += luby_mpi.o
 OBJS += luby_mpi_blocked_assignment.o
+OBJS += luby_mpi_blocked_every_pair.o
+OBJS += util.o
 OBJS += main.o
 
 CXX = mpic++ -std=c++11
