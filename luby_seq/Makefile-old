@@ -1,8 +1,8 @@
-APP_NAME=luby_blocked_seq
+APP_NAME=luby_seq
 
-OBJS=luby_blocked_seq.o
+OBJS=luby_seq.o
 
-CXX = mpic++ -std=c++11
+CXX = g++ -m64 -std=c++11
 CXXFLAGS = -I. -O3 -Wall -fopenmp -Wno-unknown-pragmas
 
 default: $(APP_NAME)
