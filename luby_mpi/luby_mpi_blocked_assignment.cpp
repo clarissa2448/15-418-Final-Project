@@ -43,7 +43,7 @@ set<int> luby_algorithm_blocked_assignment(int procID, int nproc, int n, int E, 
     int end = std::min(vertices_per_process * (procID + 1), N);
     bool * active_set = (bool *) calloc(end - start, sizeof(bool));
     float * random = (float *) calloc(end - start, sizeof(float));
-    bool * independent_set = (bool *) calloc(end - start, sizeof(float));
+    bool * independent_set = (bool *) calloc(end - start, sizeof(bool));
     set<int> * active_set_neighbors = (set<int> *) calloc(end - start, sizeof(set<int>));
     for (int i = start; i < end; i++) {
         set<int> s(adj_list[i]);

@@ -185,6 +185,7 @@ set<int> luby_algorithm_blocked_pairwise(int procID, int nproc, int n, int E, se
 
         // Send Priorities to each process, in order
         for (int i = 0; i < nproc; i ++) {
+            if (!process_has_neighbor[i]) continue;
             if (i == procID) {
                 continue;
             } else if (i < procID) { // receive first
