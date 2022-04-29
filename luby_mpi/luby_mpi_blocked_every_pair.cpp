@@ -44,7 +44,7 @@ set<int> luby_algorithm_blocked_pairwise(int procID, int nproc, int n, int E, se
     bool * active_set_array = (bool *) calloc(end - start, sizeof(bool));
     std::set<int> active_set;
     float * random = (float *) calloc(end - start, sizeof(float));
-    bool * independent_set = (bool *) calloc(end - start, sizeof(float));
+    bool * independent_set = (bool *) calloc(end - start, sizeof(bool));
     set<int> * active_set_neighbors = (set<int> *) calloc(end - start, sizeof(set<int>));
     for (int i = start; i < end; i++) {
         set<int> s(adj_list[i]);
@@ -69,6 +69,7 @@ set<int> luby_algorithm_blocked_pairwise(int procID, int nproc, int n, int E, se
     std::vector<int> * vertex_in_other_process = (std::vector<int> *) calloc(nproc, sizeof(std::vector<int>));
     std::vector<float> * priorities_to_send_process = (std::vector<float> *) calloc(nproc, sizeof(std::vector<float>));
 
+
     // removed_neighbors_from_active_set[i], in each round, contains the vertices in [start, end) which
     // are being removed from the active set, and are neighbors of some vertex in process i.
     // vertex_in_other_process[i] contains the neighbors, in process i, of the vertices in
@@ -76,6 +77,8 @@ set<int> luby_algorithm_blocked_pairwise(int procID, int nproc, int n, int E, se
     std::vector<int> * removed_neighbors_from_active_set = (std::vector<int> *) calloc(nproc, sizeof(std::vector<int>)); 
 
     int* array_to_receive_neighbors = (int *) calloc(2 * E, sizeof(int));
+    float* priorities_to_receive_process_arr = (float*) calloc(E, sizeof(float));
+    float* priorities_to_send_process_arr = (float*) calloc(E, sizeof(float));
 
     // Used to determine which processes we need
     // to communicate with in each round.
@@ -146,73 +149,47 @@ set<int> luby_algorithm_blocked_pairwise(int procID, int nproc, int n, int E, se
         time_inc = MPI_Wtime() - time_inc_start;
         total_time_step2 += time_inc;
 
-        // 3. Create a list of edges (u, v) where u < v, sorted
-        // first by u and then by v.
+        //////////////////////////////////////////
+
+        // 3. Iterate through the edges in active set and update
+        // max_priority_of_neighbors.
         time_inc_start = MPI_Wtime();
-        std::vector<edge> edge_list;
+
+        // Clear
+        for (int i = 0; i < nproc; i++) {
+            removed_neighbors_from_active_set[i].clear();
+            vertex_in_other_process[i].clear();
+            priorities_to_send_process[i].clear();
+        }
+
+        // Accumulate priorities to send each process 
         for (int u = start; u < end; u++) {
             if (!active_set_array[u - start]) continue;
             set<int> u_neighbors = active_set_neighbors[u - start];
             set<int, greater<int>>::iterator itr;
             for (itr = u_neighbors.begin(); itr != u_neighbors.end(); itr++) {
                 int v = *itr;
-                edge_list.push_back(std::make_pair(u, v));
+                int u_process = u / vertices_per_process;
+                int v_process = v / vertices_per_process;
+                if (v_process == procID) {
+                    if (DEBUG) printf("PROCID: %d, V process = procID | v_process: %d | u: %d | v: %d \n", procID, v_process, u, v);
+                    max_priority_of_neighbors[u - start] = std::max(max_priority_of_neighbors[u - start], random[v - start]);
+                } else {
+                    float communicated_priority = random[u - start];
+                    priorities_to_send_process[v_process].push_back(communicated_priority);
+                    neighbors_in_active_set[v_process].push_back(u);
+                    vertex_in_other_process[v_process].push_back(v);
+                } 
             }
         }
-        std::sort(edge_list.begin(), edge_list.end(), [](edge a, edge b){
-            float minA = min(a.first, a.second); 
-            float minB = min(b.first, b.second);
-            float maxA = max(a.first, a.second); 
-            float maxB = max(b.first, b.second);
-            if (minA < minB) return true;
-            else if (minA == minB) return maxA < maxB;
-            else return false;
-        });
-        time_inc = MPI_Wtime() - time_inc_start;
-        total_time_step3 += time_inc;
 
-        //////////////////////////////////////////
-
-        // 4. Iterate through the edges in edge_list and update
-        // max_priority_of_neighbors.
-        time_inc_start = MPI_Wtime();
-
-        for (int i = 0; i < nproc; i++) {
-            removed_neighbors_from_active_set[i].clear();
-            vertex_in_other_process[i].clear();
-        }
-
-        // priorities_to_send_process
-        for (int i = 0; i < edge_list.size(); i++) {
-            edge e = edge_list[i];
-            int u = e.first;
-            int v = e.second;
-            int u_process = u / vertices_per_process;
-            int v_process = v / vertices_per_process;
-            if (v_process == procID && u_process == procID) {
-                if (DEBUG) printf("PROCID: %d, V process = procID | v_process: %d | u: %d | v: %d \n", procID, v_process, u, v);
-                // Swap u and v - at this point, we can assume
-                // that u belongs to procID.
-                e = std::make_pair(v, u);
-                u = e.first;
-                v = e.second;
-                u_process = u / vertices_per_process;
-                v_process = v / vertices_per_process;
-                max_priority_of_neighbors[u - start] = std::max(max_priority_of_neighbors[u - start], random[v - start]);
-            } else {
-                float communicated_priority = random[u - start];
-                priorities_to_send_process[v_process].push_back(communicated_priority);
-                neighbors_in_active_set[v_process].push_back(u);
-                vertex_in_other_process[v_process].push_back(v);
-            }
-        }
+        // Send Priorities to each process, in order
         for (int i = 0; i < nproc; i ++) {
-            if (i != procID) {
+            if (i == procID) {
                 continue;
             } else if (i < procID) { // receive first
                 int num_to_send;
                 MPI_Recv(&num_to_send, 1, MPI_INT, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-                float* priorities_to_receive_process_arr = (float*)calloc(num_to_send, sizeof(float));
                 MPI_Recv(priorities_to_receive_process_arr, num_to_send, MPI_FLOAT, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
                 MPI_Recv(array_to_receive_neighbors, 2 * num_to_send, MPI_INT, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
                 for (int j = 0; j < num_to_send; j++) {
@@ -220,7 +197,7 @@ set<int> luby_algorithm_blocked_pairwise(int procID, int nproc, int n, int E, se
                     float priority = priorities_to_receive_process_arr[j];
                     max_priority_of_neighbors[v - start] = std::max(max_priority_of_neighbors[v - start], priority);
                 }
-                float* priorities_to_send_process_arr = (float*)calloc(num_to_send, sizeof(float));
+                num_to_send = priorities_to_send_process[i].size();
                 for (int j = 0; j < num_to_send; j++) {
                     priorities_to_send_process_arr[j] = priorities_to_send_process[i][j];
                     array_to_receive_neighbors[2 * j] = neighbors_in_active_set[i][j];
@@ -230,12 +207,8 @@ set<int> luby_algorithm_blocked_pairwise(int procID, int nproc, int n, int E, se
                 MPI_Send(priorities_to_send_process_arr, num_to_send, MPI_FLOAT, i, 0, MPI_COMM_WORLD);
                 MPI_Send(array_to_receive_neighbors, 2 * num_to_send, MPI_INT, i, 0, MPI_COMM_WORLD);
 
-                free(priorities_to_receive_process_arr);
-                free(priorities_to_send_process_arr);
-
             } else { // send first
                 int num_to_send = priorities_to_send_process[i].size();
-                float* priorities_to_send_process_arr = (float*)calloc(num_to_send, sizeof(float));
                 for (int j = 0; j < num_to_send; j++) {
                     priorities_to_send_process_arr[j] = priorities_to_send_process[i][j];
                     array_to_receive_neighbors[2 * j] = neighbors_in_active_set[i][j];
@@ -246,7 +219,6 @@ set<int> luby_algorithm_blocked_pairwise(int procID, int nproc, int n, int E, se
                 MPI_Send(array_to_receive_neighbors, 2 * num_to_send, MPI_INT, i, 0, MPI_COMM_WORLD);
 
                 MPI_Recv(&num_to_send, 1, MPI_INT, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-                float* priorities_to_receive_process_arr = (float*)calloc(num_to_send, sizeof(float));
                 MPI_Recv(priorities_to_receive_process_arr, num_to_send, MPI_FLOAT, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
                 MPI_Recv(array_to_receive_neighbors, 2 * num_to_send, MPI_INT, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
@@ -255,59 +227,13 @@ set<int> luby_algorithm_blocked_pairwise(int procID, int nproc, int n, int E, se
                     float priority = priorities_to_receive_process_arr[j];
                     max_priority_of_neighbors[v - start] = std::max(max_priority_of_neighbors[v - start], priority);
                 }
-                free(priorities_to_receive_process_arr);
-                free(priorities_to_send_process_arr);
             }
         }
 
-
-        // for (int i = 0; i < edge_list.size(); i++) {
-        //     edge e = edge_list[i];
-        //     int u = e.first;
-        //     int v = e.second;
-        //     int u_process = u / vertices_per_process;
-        //     int v_process = v / vertices_per_process;
-
-
-        //     if (v_process == procID && u_process == procID) {
-        //         if (DEBUG) printf("PROCID: %d, V process = procID | v_process: %d | u: %d | v: %d \n", procID, v_process, u, v);
-        //         // Swap u and v - at this point, we can assume
-        //         // that u belongs to procID.
-        //         e = std::make_pair(v, u);
-        //         u = e.first;
-        //         v = e.second;
-        //         u_process = u / vertices_per_process;
-        //         v_process = v / vertices_per_process;
-        //         max_priority_of_neighbors[u - start] = std::max(max_priority_of_neighbors[u - start], random[v - start]);
-        //     }
-        //     else if (u < v) {
-                
-        //         // First send u's priority to v_process, then
-        //         // receive v's priority from v_process.
-        //         float communicated_priority = random[u - start];
-        //         if (DEBUG) printf("PROCID: %d, u < v | v_process: %d | u: %d v: %d, priority: %f \n", procID, v_process, u, v, communicated_priority);
-        //         MPI_Send(&communicated_priority, 1, MPI_FLOAT, v_process, 0, MPI_COMM_WORLD);
-        //         MPI_Recv(&communicated_priority, 1, MPI_FLOAT, v_process, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        //         max_priority_of_neighbors[u - start] = std::max(max_priority_of_neighbors[u - start], communicated_priority);
-        //         if (DEBUG) printf("ProcID: %d, Received priority: %f\n", procID, communicated_priority);
-        //     }
-        //     else if (u > v) {
-        //         if (DEBUG) printf("PROCID: %d u >= v | v_process: %d | u: %d | v: %d \n", procID, v_process, u, v);
-        //         // First receive v's priority from v_process, then
-        //         // send u's priority to v_process.
-        //         float communicated_priority;
-        //         MPI_Recv(&communicated_priority, 1, MPI_FLOAT, v_process, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        //         if (DEBUG) printf("procID: %d, Received priority: %f\n", procID, communicated_priority);
-        //         max_priority_of_neighbors[u - start] = std::max(max_priority_of_neighbors[u - start], communicated_priority);
-        //         communicated_priority = random[u - start];
-        //         MPI_Send(&communicated_priority, 1, MPI_FLOAT, v_process, 0, MPI_COMM_WORLD);
-        //         if (DEBUG) printf("procID: %d, Sent priority: %f\n", procID, communicated_priority);
-        //     }
-        // }
         time_inc = MPI_Wtime() - time_inc_start;
-        total_time_step4 += time_inc;
+        total_time_step3 += time_inc;
 
-        // 5. Determine which vertices are going to be newly
+        // 4. Determine which vertices are going to be newly
         // added to the independent set.
         time_inc_start = MPI_Wtime();
         std::vector<int> newly_added_to_independent_set;
@@ -322,9 +248,9 @@ set<int> luby_algorithm_blocked_pairwise(int procID, int nproc, int n, int E, se
             newly_added_to_independent_set.push_back(u);
         }
         time_inc = MPI_Wtime() - time_inc_start;
-        total_time_step5 += time_inc;
+        total_time_step4 += time_inc;
 
-        // 6. Gather all the newly added vertices at root
+        // 5. Gather all the newly added vertices at root
         // and communicate those to all the processes.
         time_inc_start = MPI_Wtime();
         int newly_added_to_independent_set_size = newly_added_to_independent_set.size();
@@ -370,9 +296,9 @@ set<int> luby_algorithm_blocked_pairwise(int procID, int nproc, int n, int E, se
         MPI_Bcast(&prefix_sum, 1, MPI_INT, root, MPI_COMM_WORLD);
         MPI_Bcast(larger_independent_set, prefix_sum, MPI_INT, root, MPI_COMM_WORLD);
         time_inc = MPI_Wtime() - time_inc_start;
-        total_time_step6 += time_inc;
+        total_time_step5 += time_inc;
 
-        // 7. Update the active set
+        // 6. Update the active set
         // Each process goes through the larger independent set 
         // and go throughs all vertices newly added to independent set 
         // and sees if it's a neighbor of u
@@ -389,9 +315,9 @@ set<int> luby_algorithm_blocked_pairwise(int procID, int nproc, int n, int E, se
             }
         }
         time_inc = MPI_Wtime() - time_inc_start;
-        total_time_step7 += time_inc;
+        total_time_step6 += time_inc;
 
-        // 8. Update active_set_neighbors. First determine
+        // 7. Update active_set_neighbors. First determine
         // vertices in this process which are removed from
         // the independent set, then for each other process i,
         // send the removed vertices which are neighbors of i.
@@ -480,7 +406,7 @@ set<int> luby_algorithm_blocked_pairwise(int procID, int nproc, int n, int E, se
             }
         }
         time_inc = MPI_Wtime() - time_inc_start;
-        total_time_step8 += time_inc;
+        total_time_step7 += time_inc;
     }
 
     // Running time
@@ -491,7 +417,6 @@ set<int> luby_algorithm_blocked_pairwise(int procID, int nproc, int n, int E, se
     printf("Process: %d, time for step %d: %f\n", procID, 5, total_time_step5);
     printf("Process: %d, time for step %d: %f\n", procID, 6, total_time_step6);
     printf("Process: %d, time for step %d: %f\n", procID, 7, total_time_step7);
-    printf("Process: %d, time for step %d: %f\n", procID, 8, total_time_step8);
 
     // Gather the independent set.
     int local_ind_set_size = 0;
