@@ -122,9 +122,7 @@ int main(int argc, char *argv[]) {
     double d = get_option_float("-d", 0.3f);
     int version = get_option_int("-v", 1, argc, argv);
 
-    printf("Number of Nodes: %d Number of Edges: %d\n", n, E);
-    printf("Probability Params: %lf %lf %lf.\n", a, b, d);
-    printf("Version: %d\n", version);
+    
 
     // Initialize MPI
     MPI_Init(&argc, &argv);
@@ -135,7 +133,11 @@ int main(int argc, char *argv[]) {
     // Get total number of processes specificed at start of run
     MPI_Comm_size(MPI_COMM_WORLD, &nproc);
 
+    printf("Number of Nodes: %d Number of Edges: %d\n", n, E);
+    printf("Probability Params: %lf %lf %lf.\n", a, b, d);
+    printf("Version: %d\n", version);
     printf("Num processors: %d\n", nproc);
+
 
     // 1. Generate random graph (adjacency matrix format) using 
     // R-MAT (random graph model due to Chakrabarti, Zhan and 
