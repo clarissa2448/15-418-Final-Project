@@ -1,0 +1,76 @@
+Num processors: 64
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 1
+Num processors: 64
+Process: 0, time for step 1: 0.008297
+Process: 0, time for step 2: 0.001571
+Process: 0, time for step 3: 0.214482
+Process: 0, time for step 4: 0.189891
+Process: 0, time for step 5: 0.003398
+Process: 0, time for step 6: 0.156178
+Process: 0, time for step 7: 0.001340
+Elapsed time for proc 52: 0.761084
+Elapsed time for proc 60: 0.760834
+Elapsed time for proc 20: 0.761051
+Elapsed time for proc 62: 0.761166
+Elapsed time for proc 58: 0.760837
+Elapsed time for proc 18: 0.761054
+Elapsed time for proc 56: 0.760823
+Elapsed time for proc 54: 0.761019
+Elapsed time for proc 4: 0.761203
+Elapsed time for proc 22: 0.761032
+Elapsed time for proc 28: 0.761070
+Elapsed time for proc 27: 0.760957
+Elapsed time for proc 0: 0.760787
+Elapsed time for proc 32: 0.761110
+Elapsed time for proc 49: 0.760984
+Elapsed time for proc 51: 0.761030
+Elapsed time for proc 17: 0.760862
+Elapsed time for proc 50: 0.761032
+Elapsed time for proc 7: 0.761019
+Elapsed time for proc 53: 0.760974
+Elapsed time for proc 6: 0.761217
+Elapsed time for proc 35: 0.760801
+Elapsed time for proc 41: 0.761076
+Elapsed time for proc 46: 0.760958
+Elapsed time for proc 39: 0.761071
+Elapsed time for proc 30: 0.761074
+Elapsed time for proc 38: 0.761138
+Elapsed time for proc 48: 0.761030
+Elapsed time for proc 15: 0.760877
+Elapsed time for proc 29: 0.761193
+Elapsed time for proc 25: 0.760919
+Elapsed time for proc 31: 0.760923
+Elapsed time for proc 36: 0.761256
+Elapsed time for proc 19: 0.761178
+Elapsed time for proc 33: 0.760813
+Elapsed time for proc 47: 0.761143
+Elapsed time for proc 34: 0.761107
+Elapsed time for proc 59: 0.761005
+Elapsed time for proc 21: 0.760999
+Elapsed time for proc 13: 0.760890
+Elapsed time for proc 11: 0.760892
+Elapsed time for proc 45: 0.761174
+Elapsed time for proc 43: 0.761125
+Elapsed time for proc 8: 0.760875
+Elapsed time for proc 26: 0.761119
+Elapsed time for proc 55: 0.760941
+Elapsed time for proc 9: 0.760910
+Elapsed time for proc 10: 0.760845
+Elapsed time for proc 44: 0.760802
+Elapsed time for proc 16: 0.760910
+Elapsed time for proc 40: 0.760933
+Elapsed time for proc 12: 0.760839
+Elapsed time for proc 24: 0.760776
+Elapsed time for proc 2: 0.761222
+Elapsed time for proc 14: 0.760857
+Elapsed time for proc 3: 0.761110
+Elapsed time for proc 42: 0.761033
+Elapsed time for proc 5: 0.760998
+Elapsed time for proc 37: 0.760817
+Elapsed time for proc 23: 0.761074
+Elapsed time for proc 1: 0.761255
+Elapsed time for proc 63: 0.760948
+Elapsed time for proc 61: 0.760959
+Elapsed time for proc 57: 0.760997

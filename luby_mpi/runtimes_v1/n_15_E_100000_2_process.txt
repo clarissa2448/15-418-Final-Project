@@ -1,0 +1,13 @@
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 1
+Num processors: 2
+Process: 0, time for step 1: 0.009181
+Process: 0, time for step 2: 0.000412
+Process: 0, time for step 3: 8.718755
+Process: 0, time for step 4: 0.006147
+Process: 0, time for step 5: 0.003707
+Process: 0, time for step 6: 0.190026
+Process: 0, time for step 7: 0.001274
+Elapsed time for proc 1: 9.855585
+Elapsed time for proc 0: 9.855096

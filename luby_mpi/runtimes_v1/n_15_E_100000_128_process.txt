@@ -1,0 +1,153 @@
+Version: 1
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 1
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 1
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 1
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 1
+Num processors: 128
+Process: 0, time for step 1: 0.007871
+Process: 0, time for step 2: 0.001391
+Process: 0, time for step 3: 0.068183
+Process: 0, time for step 4: 0.882369
+Process: 0, time for step 5: 0.007947
+Process: 0, time for step 6: 0.071442
+Process: 0, time for step 7: 0.002473
+Elapsed time for proc 116: 1.092163
+Elapsed time for proc 114: 1.090908
+Elapsed time for proc 121: 1.091315
+Elapsed time for proc 89: 1.091058
+Elapsed time for proc 90: 1.091916
+Elapsed time for proc 119: 1.091220
+Elapsed time for proc 47: 1.091377
+Elapsed time for proc 53: 1.091179
+Elapsed time for proc 86: 1.091513
+Elapsed time for proc 96: 1.091247
+Elapsed time for proc 106: 1.091130
+Elapsed time for proc 2: 1.092249
+Elapsed time for proc 103: 1.090992
+Elapsed time for proc 44: 1.091076
+Elapsed time for proc 92: 1.092125
+Elapsed time for proc 4: 1.092107
+Elapsed time for proc 64: 1.091133
+Elapsed time for proc 91: 1.091034
+Elapsed time for proc 31: 1.091868
+Elapsed time for proc 25: 1.091523
+Elapsed time for proc 115: 1.091278
+Elapsed time for proc 127: 1.091291
+Elapsed time for proc 110: 1.091709
+Elapsed time for proc 8: 1.092101
+Elapsed time for proc 109: 1.091111
+Elapsed time for proc 30: 1.091896
+Elapsed time for proc 104: 1.091618
+Elapsed time for proc 107: 1.091063
+Elapsed time for proc 60: 1.091617
+Elapsed time for proc 39: 1.091479
+Elapsed time for proc 76: 1.091705
+Elapsed time for proc 35: 1.091515
+Elapsed time for proc 10: 1.091684
+Elapsed time for proc 16: 1.091730
+Elapsed time for proc 70: 1.091251
+Elapsed time for proc 98: 1.090918
+Elapsed time for proc 9: 1.090955
+Elapsed time for proc 58: 1.091919
+Elapsed time for proc 118: 1.091229
+Elapsed time for proc 55: 1.091665
+Elapsed time for proc 113: 1.091150
+Elapsed time for proc 19: 1.090870
+Elapsed time for proc 23: 1.091654
+Elapsed time for proc 32: 1.092049
+Elapsed time for proc 105: 1.091058
+Elapsed time for proc 62: 1.092002
+Elapsed time for proc 65: 1.091285
+Elapsed time for proc 83: 1.091123
+Elapsed time for proc 71: 1.091423
+Elapsed time for proc 87: 1.091275
+Elapsed time for proc 80: 1.091595
+Elapsed time for proc 40: 1.091587
+Elapsed time for proc 42: 1.091672
+Elapsed time for proc 46: 1.091895
+Elapsed time for proc 22: 1.091883
+Elapsed time for proc 13: 1.091732
+Elapsed time for proc 99: 1.090997
+Elapsed time for proc 100: 1.091679
+Elapsed time for proc 117: 1.091183
+Elapsed time for proc 101: 1.091050
+Elapsed time for proc 112: 1.091146
+Elapsed time for proc 49: 1.091817
+Elapsed time for proc 67: 1.091119
+Elapsed time for proc 29: 1.091765
+Elapsed time for proc 37: 1.091443
+Elapsed time for proc 34: 1.091693
+Elapsed time for proc 66: 1.091302
+Elapsed time for proc 102: 1.091561
+Elapsed time for proc 85: 1.091210
+Elapsed time for proc 78: 1.091456
+Elapsed time for proc 72: 1.091727
+Elapsed time for proc 27: 1.091621
+Elapsed time for proc 26: 1.091134
+Elapsed time for proc 43: 1.091344
+Elapsed time for proc 56: 1.092028
+Elapsed time for proc 94: 1.091291
+Elapsed time for proc 38: 1.091902
+Elapsed time for proc 36: 1.091895
+Elapsed time for proc 74: 1.091339
+Elapsed time for proc 68: 1.091430
+Elapsed time for proc 33: 1.091523
+Elapsed time for proc 15: 1.091655
+Elapsed time for proc 108: 1.091642
+Elapsed time for proc 28: 1.091609
+Elapsed time for proc 12: 1.091760
+Elapsed time for proc 14: 1.091149
+Elapsed time for proc 124: 1.091410
+Elapsed time for proc 45: 1.091114
+Elapsed time for proc 120: 1.091229
+Elapsed time for proc 54: 1.091786
+Elapsed time for proc 52: 1.091617
+Elapsed time for proc 88: 1.091308
+Elapsed time for proc 126: 1.091608
+Elapsed time for proc 82: 1.091282
+Elapsed time for proc 21: 1.091750
+Elapsed time for proc 84: 1.091596
+Elapsed time for proc 81: 1.090942
+Elapsed time for proc 17: 1.091715
+Elapsed time for proc 24: 1.091713
+Elapsed time for proc 57: 1.091229
+Elapsed time for proc 63: 1.090831
+Elapsed time for proc 122: 1.091323
+Elapsed time for proc 73: 1.091509
+Elapsed time for proc 48: 1.091304
+Elapsed time for proc 0: 1.090821
+Elapsed time for proc 125: 1.091190
+Elapsed time for proc 50: 1.091923
+Elapsed time for proc 123: 1.091035
+Elapsed time for proc 61: 1.091687
+Elapsed time for proc 1: 1.091522
+Elapsed time for proc 7: 1.091294
+Elapsed time for proc 59: 1.091538
+Elapsed time for proc 41: 1.091812
+Elapsed time for proc 6: 1.092148
+Elapsed time for proc 11: 1.091814
+Elapsed time for proc 5: 1.091336
+Elapsed time for proc 77: 1.091204
+Elapsed time for proc 75: 1.091492
+Elapsed time for proc 97: 1.091232
+Elapsed time for proc 111: 1.091098
+Elapsed time for proc 95: 1.091422
+Elapsed time for proc 93: 1.091205
+Elapsed time for proc 79: 1.091338
+Elapsed time for proc 69: 1.091419
+Elapsed time for proc 3: 1.091272
+Elapsed time for proc 51: 1.091872
+Elapsed time for proc 18: 1.091906
+Elapsed time for proc 20: 1.091900

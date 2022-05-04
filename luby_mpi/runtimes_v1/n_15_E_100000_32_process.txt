@@ -1,0 +1,44 @@
+Num processors: 32
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 1
+Num processors: 32
+Process: 0, time for step 1: 0.008087
+Process: 0, time for step 2: 0.000876
+Process: 0, time for step 3: 0.438347
+Process: 0, time for step 4: 0.095809
+Process: 0, time for step 5: 0.003243
+Process: 0, time for step 6: 0.155465
+Process: 0, time for step 7: 0.001346
+Elapsed time for proc 12: 1.005193
+Elapsed time for proc 7: 1.005161
+Elapsed time for proc 23: 1.005246
+Elapsed time for proc 17: 1.005178
+Elapsed time for proc 14: 1.005168
+Elapsed time for proc 30: 1.005170
+Elapsed time for proc 1: 1.005166
+Elapsed time for proc 28: 1.005150
+Elapsed time for proc 26: 1.005147
+Elapsed time for proc 4: 1.005291
+Elapsed time for proc 25: 1.005221
+Elapsed time for proc 22: 1.005183
+Elapsed time for proc 27: 1.005163
+Elapsed time for proc 10: 1.005168
+Elapsed time for proc 29: 1.005127
+Elapsed time for proc 13: 1.005195
+Elapsed time for proc 16: 1.005189
+Elapsed time for proc 19: 1.005119
+Elapsed time for proc 21: 1.005164
+Elapsed time for proc 20: 1.005204
+Elapsed time for proc 8: 1.005168
+Elapsed time for proc 18: 1.005275
+Elapsed time for proc 31: 1.005179
+Elapsed time for proc 2: 1.005327
+Elapsed time for proc 11: 1.005160
+Elapsed time for proc 0: 1.004786
+Elapsed time for proc 6: 1.005253
+Elapsed time for proc 24: 1.005165
+Elapsed time for proc 3: 1.005194
+Elapsed time for proc 9: 1.005211
+Elapsed time for proc 5: 1.005184
+Elapsed time for proc 15: 1.005145
