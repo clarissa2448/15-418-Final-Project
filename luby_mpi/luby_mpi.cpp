@@ -180,12 +180,30 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list
         active_set_array[i] = i;
     }
 
+    // Timing
+    double time_inc_start;
+    double time_inc;
+    // 1. Assignment of random priorities
+    double total_time_step1 = 0;
+    // 2. Communicate priorities to all processes
+    double total_time_step2 = 0;
+    // 3. Computing max priority out of all neighbors.
+    double total_time_step3 = 0;
+    // 4. Determine which vertices should be added to independent set and send to root
+    double total_time_step4 = 0;
+    // 5. Communicate newly added vertices to all processes.
+    double total_time_step5 = 0;
+    // 6. Communicate active set to all processes
+    double total_time_step6 = 0;
+    // 7. Broadcasts final independent set to all processes
+    double total_time_step7 = 0;
+
     set<int> maximal_independent_set;
     int * maximal_independent_set_array;
     while (active_set.size() > 0) {
 
         // 1. Assign random priorities to all of the vertices in the active set.
-        // TODO: Parallelize this assignment.
+        time_inc_start = MPI_Wtime();
         int nc = pow(N, PROB_POWER);
         float * random = (float *) calloc(N, sizeof(float));
         active_set_array = (int *) calloc(active_set.size(), sizeof(int));
@@ -201,22 +219,33 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list
                 idx++;
             }
         }
+        time_inc = MPI_Wtime() - time_inc_start;
+        total_time_step1 += time_inc;
+
+        if (DEBUG) printf("PROCID: %d After 1\n", procID);
+        
 
         // 2. Communicate the random priorities (and vertex-index pairs) to all
         // the vertices.
-        // TODO: Instead of communicating the entire array, only communicate the
-        // priorities to the neighbors and see how much this helps.
+        time_inc_start = MPI_Wtime();
         MPI_Bcast(random, N, MPI_FLOAT, root, MPI_COMM_WORLD);
         MPI_Bcast(active_set_array, active_set.size(), MPI_INT, root, MPI_COMM_WORLD);
+        time_inc = MPI_Wtime() - time_inc_start;
+        total_time_step2 += time_inc;
+        
+        if (DEBUG) printf("PROCID: %d After 2\n", procID);
+        
 
         // 3. For each vertex in the active set, compare its priority to that
         // of its neighbors and add it to the maximal independent set if its
         // priority is bigger than those of its neighbors.
+        time_inc_start = MPI_Wtime();
         int vertices_per_group;
         if (active_set.size() % nproc == 0) vertices_per_group = active_set.size() / nproc;
         else vertices_per_group = active_set.size() / nproc + 1;
         int start = vertices_per_group * procID;
-        int end = vertices_per_group * (procID + 1);
+        int active_set_size = active_set.size();
+        int end = std::min(vertices_per_group * (procID + 1), active_set_size);
         for (int idx = start; idx < end; idx++) {
             int v = active_set_array[idx];
             bool flag = true;
@@ -231,12 +260,16 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list
             }
             if (flag) maximal_independent_set.insert(v);
         }
+        time_inc = MPI_Wtime() - time_inc_start;
+        total_time_step3 += time_inc;
+
+        if (DEBUG) printf("PROCID %d After 3\n", procID);
+
+        MPI_Barrier(MPI_COMM_WORLD);
         
         // 4. Processors combine their values of maximal_independent_set.
         // Process 0 will hold the new maximal independent set.
-        // TODO: Just communicate newly added vertices instead.
-        // TODO: Use gather to collect the newly added vertices at the root
-        // (or use a tree instead of directly communicating with root)
+        time_inc_start = MPI_Wtime();
         int set_size;
         if (procID != root) {
             set_size = maximal_independent_set.size();
@@ -258,17 +291,33 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list
                 set_union_yes(maximal_independent_set, received_independent_set);
             }
         }
+        time_inc = MPI_Wtime() - time_inc_start;
+        total_time_step4 += time_inc;
+
+        if (DEBUG) printf("PROCID %d After 4\n", procID);
 
         // 5. Process 0 broadcasts its maximal independent set to all of the other processes.
+        time_inc_start = MPI_Wtime();
         if (procID == root) set_size = maximal_independent_set.size();
         MPI_Bcast(&set_size, 1, MPI_INT, root, MPI_COMM_WORLD);
-        if (procID == root) maximal_independent_set_array = setToArray(maximal_independent_set);
-        else maximal_independent_set_array = (int *) calloc(set_size, sizeof(int));
-        MPI_Bcast(&maximal_independent_set_array, set_size, MPI_INT, root, MPI_COMM_WORLD);
-        maximal_independent_set = arrayToSet(maximal_independent_set_array, set_size);
+        int * maximal_independent_set_array_recv;
+        if (procID == root) 
+        {
+            maximal_independent_set_array_recv = setToArray(maximal_independent_set);
+        }
+        else {
+            maximal_independent_set_array_recv = (int *) calloc(set_size, sizeof(int));
+        }
+        MPI_Bcast(maximal_independent_set_array_recv, set_size, MPI_INT, root, MPI_COMM_WORLD);
+        maximal_independent_set = arrayToSet(maximal_independent_set_array_recv, set_size);
+        
+        time_inc = MPI_Wtime() - time_inc_start;
+        total_time_step5 += time_inc;
+
+        if (DEBUG) printf("procID %d After 5\n", procID);
 
         // 6. Process 0 computes the new active set and broadcasts this as well.
-        int active_set_size;
+        time_inc_start = MPI_Wtime();
         int * active_set_array;
         if (procID == root) {
             set<int> killed_vertices;
@@ -280,8 +329,9 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list
                 }
                 killed_vertices.insert(*itr);
             }
-            if (DEBUG) printf("Current active set: ");
-            if (DEBUG) print_set(active_set);
+            
+            // if (DEBUG) printf("Current active set: ");
+            // if (DEBUG) print_set(active_set);
 
             // Remove killed_vertices from active set
             active_set = set_minus(active_set, killed_vertices);
@@ -289,11 +339,22 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list
             active_set_array = setToArray(active_set);
         }
         MPI_Bcast(&active_set_size, 1, MPI_INT, root, MPI_COMM_WORLD);
-        MPI_Bcast(&active_set_array, active_set_size, MPI_INT, root, MPI_COMM_WORLD);
+
+        if (procID != root) {
+            active_set_array = (int*) calloc(active_set_size, sizeof(int));
+        }
+        MPI_Bcast(active_set_array, active_set_size, MPI_INT, root, MPI_COMM_WORLD);
         if (procID != root) active_set = arrayToSet(active_set_array, active_set_size);
+        
+        time_inc = MPI_Wtime() - time_inc_start;
+        total_time_step6 += time_inc;
+
+        if (DEBUG) printf("PROCID %d After 6\n", procID);
+        
     }
 
     // Broadcast final maximal independent set to all processes
+    time_inc_start = MPI_Wtime();
     int output_size;
     if (procID == root) {
         output_size = maximal_independent_set.size();
@@ -301,7 +362,25 @@ set<int> luby_algorithm(int procID, int nproc, int n, int E, set<int> * adj_list
     }
 
     MPI_Bcast(&output_size, 1, MPI_INT, root, MPI_COMM_WORLD);
+    if (procID != root) {
+        maximal_independent_set_array = (int*) calloc(output_size, sizeof(int));
+    }
     MPI_Bcast(maximal_independent_set_array, output_size, MPI_INT, root, MPI_COMM_WORLD);
     if (procID != root) maximal_independent_set = arrayToSet(maximal_independent_set_array, output_size);
+    
+    time_inc = MPI_Wtime() - time_inc_start;
+    total_time_step7 += time_inc;
+
+    // Running time
+    if (procID == root) {
+        printf("Process: %d, time for step %d: %f\n", procID, 1, total_time_step1);
+        printf("Process: %d, time for step %d: %f\n", procID, 2, total_time_step2);
+        printf("Process: %d, time for step %d: %f\n", procID, 3, total_time_step3);
+        printf("Process: %d, time for step %d: %f\n", procID, 4, total_time_step4);
+        printf("Process: %d, time for step %d: %f\n", procID, 5, total_time_step5);
+        printf("Process: %d, time for step %d: %f\n", procID, 6, total_time_step6);
+        printf("Process: %d, time for step %d: %f\n", procID, 7, total_time_step7);
+    }
+    
     return maximal_independent_set;
 }

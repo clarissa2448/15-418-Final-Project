@@ -177,9 +177,7 @@ int main(int argc, char *argv[]) {
     double startTime;
     double endTime;
 
-    printf("Number of Nodes: %d Number of Edges: %d\n", n, E);
-    printf("Probability Params: %lf %lf %lf.\n", a, b, d);
-    printf("Version: %d\n", version);
+    
 
     // Initialize MPI
     MPI_Init(&argc, &argv);
@@ -190,6 +188,9 @@ int main(int argc, char *argv[]) {
     // Get total number of processes specificed at start of run
     MPI_Comm_size(MPI_COMM_WORLD, &nproc);
 
+    printf("Number of Nodes: %d Number of Edges: %d\n", n, E);
+    printf("Probability Params: %lf %lf %lf.\n", a, b, d);
+    printf("Version: %d\n", version);
     printf("Num processors: %d\n", nproc);
 
     int root = 0;
