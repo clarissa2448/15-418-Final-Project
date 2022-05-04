@@ -17,12 +17,15 @@
 #include <vector>
 #include <random>
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <vector>
 #include <set>
 #include "util.h"
+#include <string>
 
 #define BUFFER_LENGTH 300000
+#define MAX_DIGITS 10
 #define DEBUG false
 using namespace std;
 
@@ -80,11 +83,11 @@ set<int> * gen_dummy_adj_list() {
 
 
 // Write Input Adjacency List to File
-void write_adj_list_to_file(set<int>* adj_list, int n, int E, int nproc) {
+void write_adj_list_to_file(set<int>* adj_list, int n, int E) {
     ofstream adj_list_file;
     int N = 1 << n;
     char buffer[BUFFER_LENGTH];
-    snprintf(buffer, BUFFER_LENGTH, "outputs/adj_list_%d_%d_%d.txt", n, E, nproc);
+    snprintf(buffer, BUFFER_LENGTH, "input_graphs/adj_list_%d_%d.txt", n, E);
     adj_list_file.open(buffer);
     for (int i = 0; i < N; i++) {
         for (auto j = adj_list[i].begin(); j != adj_list[i].end(); j++) {
@@ -97,8 +100,29 @@ void write_adj_list_to_file(set<int>* adj_list, int n, int E, int nproc) {
     adj_list_file.close();
 }
 
+// Read Adj from file
+set<int>* read_adj_list_from_file(int n, int E, string filename) {
+    int N = 1 << n;
+    set<int> * adj_list = (std::set<int> *) calloc(N, sizeof(set<int>));
+    std::ifstream file(filename);
+    for (int i = 0; i < N; i++) {
+        set<int> l;
+        string line, tmp;
+        std::getline(file, line);
+        stringstream ss(line);
+        while(getline(ss, tmp, ' ')){
+            l.insert(stoi(tmp));
+        }
+        adj_list[i] = l;
+
+    }
+    return adj_list;
+
+}
+
 // Write Output Independent Set to File
 void write_mis_to_file(set<int> mis, int n, int E, int nproc) {
+
     ofstream mis_file;
     char buffer[BUFFER_LENGTH];
     snprintf(buffer, BUFFER_LENGTH, "outputs/maximal_indep_set_%d_%d_%d.txt", n, E, nproc);
@@ -110,17 +134,48 @@ void write_mis_to_file(set<int> mis, int n, int E, int nproc) {
 }
 
 int main(int argc, char *argv[]) {
-    int procID;
-    int nproc;
-    double startTime;
-    double endTime;
 
+    // If the following option is 1, we create a graph and return
+    // If the following option is 0, we read a graph from an input file
+    int create_graph = get_option_int("-g", 1, argc, argv);
     int n = get_option_int("-n", 10, argc, argv);
+    int N = (1 << n);
+    set<int> * adj_list = (std::set<int> *) calloc(N, sizeof(set<int>)); 
     int E = get_option_int("-E", 100, argc, argv);
     double a = get_option_float("-a", 0.1f);
     double b = get_option_float("-b", 0.3f);
     double d = get_option_float("-d", 0.3f);
     int version = get_option_int("-v", 1, argc, argv);
+    const char * input_filename = get_option_string("-f", "");
+
+    if (create_graph == 1) {
+        // 1. Generate random graph (adjacency matrix format) using 
+        // R-MAT (random graph model due to Chakrabarti, Zhan and 
+        // Faloutsos, and used in the work of Blelloch, Fineman and 
+        // Shun)
+        // Description of R-MAT method available at:
+        // https://www.cs.cmu.edu/~christos/PUBLICATIONS/siam04.pdf
+        adj_list = generate_rmat_graph(n, E, a, b, d);
+
+        if (DEBUG) {
+            for (int i = 0; i < N; i ++) {
+                printf("%d: ", i);
+                for (auto itr = adj_list[i].begin(); itr != adj_list[i].end(); itr ++) {
+                    printf("%d ", *itr);
+                }
+                printf("\n");
+            }
+        }
+
+        write_adj_list_to_file(adj_list, n, E);
+        printf("Graph created\n");
+        return 0;
+    }
+
+    int procID;
+    int nproc;
+    double startTime;
+    double endTime;
 
     printf("Number of Nodes: %d Number of Edges: %d\n", n, E);
     printf("Probability Params: %lf %lf %lf.\n", a, b, d);
@@ -137,46 +192,8 @@ int main(int argc, char *argv[]) {
 
     printf("Num processors: %d\n", nproc);
 
-    // 1. Generate random graph (adjacency matrix format) using 
-    // R-MAT (random graph model due to Chakrabarti, Zhan and 
-    // Faloutsos, and used in the work of Blelloch, Fineman and 
-    // Shun)
-    // Description of R-MAT method available at:
-    // https://www.cs.cmu.edu/~christos/PUBLICATIONS/siam04.pdf
     int root = 0;
-    int N = (1 << n);
-    set<int> * adj_list = (std::set<int> *) calloc(N, sizeof(set<int>)); 
-    
-    if (procID == root) {
-        adj_list = generate_rmat_graph(n, E, a, b, d);
-    }
-    
-    for (int i = 0; i < N; i++) {
-        // Bcast length first
-        int num_neighbors;
-        if (procID == root) {
-            num_neighbors = adj_list[i].size();
-        }
-        MPI_Bcast(&num_neighbors, 1, MPI_INT, root, MPI_COMM_WORLD);
-        // Bcast set as array
-        int * neighbors = (int *) calloc(num_neighbors, sizeof(int));
-        if (procID == root) {
-            neighbors = setToArray(adj_list[i]);
-        }
-        MPI_Bcast(neighbors, num_neighbors, MPI_INT, root, MPI_COMM_WORLD);
-        set<int> neighbors_set = arrayToSet(neighbors, num_neighbors);
-        adj_list[i] = neighbors_set;
-    }
-
-    if (DEBUG) {
-        for (int i = 0; i < N; i ++) {
-            printf("%d: ", i);
-            for (auto itr = adj_list[i].begin(); itr != adj_list[i].end(); itr ++) {
-                printf("%d ", *itr);
-            }
-            printf("\n");
-        }
-    }
+    read_adj_list_from_file(n, E, input_filename);
 
     // Run computation
     startTime = MPI_Wtime();
@@ -198,7 +215,6 @@ int main(int argc, char *argv[]) {
 
 
     // Write to Files
-    write_adj_list_to_file(adj_list, n, E, nproc);
     write_mis_to_file(M, n, E, nproc);
 
     // Cleanup
