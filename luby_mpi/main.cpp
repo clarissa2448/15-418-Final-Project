@@ -32,7 +32,7 @@ using namespace std;
 static int _argc;
 static const char **_argv;
 
-const char *get_option_string(const char *option_name, const char *default_value) {
+const char *get_option_string(const char *option_name, const char *default_value, int _argc, char **_argv) {
     for (int i = _argc - 2; i >= 0; i -= 2)
         if (strcmp(_argv[i], option_name) == 0)
             return _argv[i + 1];
@@ -140,13 +140,14 @@ int main(int argc, char *argv[]) {
     int create_graph = get_option_int("-g", 1, argc, argv);
     int n = get_option_int("-n", 10, argc, argv);
     int N = (1 << n);
-    set<int> * adj_list = (std::set<int> *) calloc(N, sizeof(set<int>)); 
+    set<int> * adj_list;
+    // set<int> * adj_list = (std::set<int> *) calloc(N, sizeof(set<int>)); 
     int E = get_option_int("-E", 100, argc, argv);
     double a = get_option_float("-a", 0.1f);
     double b = get_option_float("-b", 0.3f);
     double d = get_option_float("-d", 0.3f);
     int version = get_option_int("-v", 1, argc, argv);
-    const char * input_filename = get_option_string("-f", "");
+    string input_filename = get_option_string("-f", "", argc, argv);
 
     if (create_graph == 1) {
         // 1. Generate random graph (adjacency matrix format) using 
@@ -158,13 +159,16 @@ int main(int argc, char *argv[]) {
         adj_list = generate_rmat_graph(n, E, a, b, d);
 
         if (DEBUG) {
+            int num_edges = 0;
             for (int i = 0; i < N; i ++) {
                 printf("%d: ", i);
                 for (auto itr = adj_list[i].begin(); itr != adj_list[i].end(); itr ++) {
                     printf("%d ", *itr);
                 }
+                num_edges += adj_list[i].size();
                 printf("\n");
             }
+            printf("NUMBER EDGES: %d \n", num_edges);
         }
 
         write_adj_list_to_file(adj_list, n, E);
@@ -194,8 +198,19 @@ int main(int argc, char *argv[]) {
     printf("Num processors: %d\n", nproc);
 
     int root = 0;
-    read_adj_list_from_file(n, E, input_filename);
+    adj_list = read_adj_list_from_file(n, E, input_filename);
 
+    //  if (DEBUG) {
+    //     int N = 1 << n;
+    //     int edges = 0;
+    //     for (int i = 0; i < N; i ++) {
+    //         set<int> l = adj_list[i];
+    //         edges += l.size();
+            
+    //     }
+    //     printf("EDGES %d\n", edges);
+    // }
+    MPI_Barrier(MPI_COMM_WORLD);
     // Run computation
     startTime = MPI_Wtime();
     set<int> M;
@@ -205,14 +220,14 @@ int main(int argc, char *argv[]) {
     else if (version == 4) M = luby_algorithm_blocked_assignment_async(procID, nproc, n, E, adj_list);
     endTime = MPI_Wtime();
 
-    if (DEBUG)
-    {
-        printf("Nodes in Maximal Independent Set\n");
-        set<int, greater<int> >::iterator itr;
-        for (itr = M.begin(); itr != M.end(); itr++) {
-            printf("%d ", *itr);
-        }
-    }
+    // if (DEBUG)
+    // {
+    //     printf("Nodes in Maximal Independent Set\n");
+    //     set<int, greater<int> >::iterator itr;
+    //     for (itr = M.begin(); itr != M.end(); itr++) {
+    //         printf("%d ", *itr);
+    //     }
+    // }
 
 
     // Write to Files
