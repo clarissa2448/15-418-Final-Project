@@ -1,0 +1,48 @@
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 3
+Num processors: 4
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 3
+Num processors: 4
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 3
+Num processors: 4
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 3
+Num processors: 4
+Process: 0, time for step 1: 0.034796
+Process: 0, time for step 2: 0.006533
+Process: 0, time for step 3: 0.033286
+Process: 0, time for step 4: 0.013331
+Process: 0, time for step 5: 0.002858
+Process: 0, time for step 6: 0.269760
+Process: 0, time for step 7: 0.049657
+Process: 2, time for step 1: 0.026706
+Process: 2, time for step 2: 0.004086
+Process: 2, time for step 3: 0.033555
+Process: 2, time for step 4: 0.011014
+Process: 2, time for step 5: 0.010895
+Process: 2, time for step 6: 0.298030
+Process: 2, time for step 7: 0.024879
+Process: 3, time for step 1: 0.015718
+Process: 3, time for step 2: 0.004002
+Process: 3, time for step 3: 0.033128
+Process: 3, time for step 4: 0.010094
+Process: 3, time for step 5: 0.012187
+Process: 3, time for step 6: 0.313391
+Process: 3, time for step 7: 0.018666
+Process: 1, time for step 1: 0.021521
+Process: 1, time for step 2: 0.004020
+Process: 1, time for step 3: 0.033163
+Process: 1, time for step 4: 0.010892
+Process: 1, time for step 5: 0.011569
+Process: 1, time for step 6: 0.296666
+Process: 1, time for step 7: 0.031586
+Elapsed time for proc 1: 0.415589
+Elapsed time for proc 2: 0.415660
+Elapsed time for proc 0: 0.415642
+Elapsed time for proc 3: 0.415594
