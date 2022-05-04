@@ -1,0 +1,1664 @@
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+Version: 2
+Num processors: 128
+Process: 67, time for step 1: 0.097989
+Process: 0, time for step 1: 0.215974
+Process: 4, time for step 1: 0.207677
+Process: 4, time for step 2: 0.000214
+Process: 4, time for step 3: 0.000671
+Process: 4, time for step 4: 0.022280
+Process: 4, time for step 5: 0.000397
+Process: 4, time for step 6: 0.345279
+Process: 4, time for step 7: 0.008539
+Process: 4, time for step 8: 0.324432
+Process: 2, time for step 1: 0.211604
+Process: 2, time for step 2: 0.000219
+Process: 2, time for step 3: 0.000676
+Process: 2, time for step 4: 0.015273
+Process: 2, time for step 5: 0.000395
+Process: 2, time for step 6: 0.352386
+Process: 2, time for step 7: 0.008181
+Process: 2, time for step 8: 0.320155
+Process: 6, time for step 1: 0.204083
+Process: 6, time for step 2: 0.000221
+Process: 6, time for step 3: 0.000707
+Process: 6, time for step 4: 0.030939
+Process: 6, time for step 5: 0.000397
+Process: 6, time for step 6: 0.336528
+Process: 6, time for step 7: 0.009826
+Process: 6, time for step 8: 0.326950
+Process: 16, time for step 1: 0.188423
+Process: 16, time for step 2: 0.000210
+Process: 16, time for step 3: 0.000682
+Process: 16, time for step 4: 0.071601
+Process: 16, time for step 5: 0.000393
+Process: 16, time for step 6: 0.295991
+Process: 16, time for step 7: 0.007985
+Process: 16, time for step 8: 0.343780
+Process: 7, time for step 1: 0.203233
+Process: 7, time for step 2: 0.000236
+Process: 7, time for step 3: 0.000760
+Process: 7, time for step 4: 0.035368
+Process: 7, time for step 5: 0.000393
+Process: 7, time for step 6: 0.331888
+Process: 7, time for step 7: 0.010689
+Process: 7, time for step 8: 0.326056
+Process: 26, time for step 1: 0.169432
+Process: 26, time for step 2: 0.000231
+Process: 26, time for step 3: 0.000790
+Process: 26, time for step 4: 0.111454
+Process: 26, time for step 5: 0.000408
+Process: 26, time for step 6: 0.254549
+Process: 26, time for step 7: 0.011063
+Process: 26, time for step 8: 0.360982
+Process: 1, time for step 1: 0.214848
+Process: 1, time for step 2: 0.000219
+Process: 1, time for step 3: 0.000679
+Process: 1, time for step 4: 0.011669
+Process: 1, time for step 5: 0.000398
+Process: 1, time for step 6: 0.356441
+Process: 1, time for step 7: 0.008572
+Process: 1, time for step 8: 0.316149
+Process: 28, time for step 1: 0.166508
+Process: 28, time for step 2: 0.000213
+Process: 28, time for step 3: 0.000771
+Process: 28, time for step 4: 0.119921
+Process: 28, time for step 5: 0.000399
+Process: 28, time for step 6: 0.246484
+Process: 28, time for step 7: 0.011185
+Process: 28, time for step 8: 0.363716
+Process: 3, time for step 1: 0.211997
+Process: 3, time for step 2: 0.000213
+Process: 3, time for step 3: 0.000701
+Process: 3, time for step 4: 0.019529
+Process: 3, time for step 5: 0.000389
+Process: 3, time for step 6: 0.347860
+Process: 3, time for step 7: 0.009529
+Process: 3, time for step 8: 0.318715
+Process: 20, time for step 1: 0.180034
+Process: 20, time for step 2: 0.000217
+Process: 20, time for step 3: 0.000716
+Process: 20, time for step 4: 0.086354
+Process: 20, time for step 5: 0.000397
+Process: 20, time for step 6: 0.280892
+Process: 20, time for step 7: 0.009390
+Process: 20, time for step 8: 0.351098
+Process: 69, time for step 1: 0.095499
+Process: 69, time for step 2: 0.000224
+Process: 69, time for step 3: 0.000788
+Process: 69, time for step 4: 0.269070
+Process: 69, time for step 5: 0.000393
+Process: 69, time for step 6: 0.097662
+Process: 69, time for step 7: 0.010727
+Process: 69, time for step 8: 0.434957
+Process: 18, time for step 1: 0.183748
+Process: 18, time for step 2: 0.000218
+Process: 18, time for step 3: 0.000729
+Process: 18, time for step 4: 0.078629
+Process: 18, time for step 5: 0.000398
+Process: 18, time for step 6: 0.288516
+Process: 18, time for step 7: 0.009554
+Process: 18, time for step 8: 0.347254
+Process: 65, time for step 1: 0.100623
+Process: 65, time for step 2: 0.000224
+Process: 65, time for step 3: 0.000735
+Process: 65, time for step 4: 0.261404
+Process: 65, time for step 5: 0.000394
+Process: 65, time for step 6: 0.105617
+Process: 65, time for step 7: 0.009290
+Process: 65, time for step 8: 0.431239
+Process: 71, time for step 1: 0.092083
+Process: 71, time for step 2: 0.000213
+Process: 71, time for step 3: 0.000866
+Process: 71, time for step 4: 0.273608
+Process: 71, time for step 5: 0.000387
+Process: 71, time for step 6: 0.093142
+Process: 71, time for step 7: 0.011849
+Process: 71, time for step 8: 0.437146
+Process: 22, time for step 1: 0.176574
+Process: 22, time for step 2: 0.000255
+Process: 22, time for step 3: 0.000774
+Process: 22, time for step 4: 0.094199
+Process: 22, time for step 5: 0.000416
+Process: 22, time for step 6: 0.272920
+Process: 22, time for step 7: 0.012069
+Process: 22, time for step 8: 0.351864
+Process: 24, time for step 1: 0.173829
+Process: 24, time for step 2: 0.000220
+Process: 24, time for step 3: 0.000719
+Process: 24, time for step 4: 0.102825
+Process: 24, time for step 5: 0.000403
+Process: 24, time for step 6: 0.264277
+Process: 24, time for step 7: 0.009445
+Process: 24, time for step 8: 0.357554
+Process: 5, time for step 1: 0.207217
+Process: 5, time for step 2: 0.000230
+Process: 5, time for step 3: 0.000715
+Process: 5, time for step 4: 0.027152
+Process: 5, time for step 5: 0.000403
+Process: 5, time for step 6: 0.340192
+Process: 5, time for step 7: 0.009542
+Process: 5, time for step 8: 0.323521
+Process: 30, time for step 1: 0.163486
+Process: 30, time for step 2: 0.000212
+Process: 30, time for step 3: 0.000859
+Process: 30, time for step 4: 0.129428
+Process: 30, time for step 5: 0.000396
+Process: 30, time for step 6: 0.236857
+Process: 30, time for step 7: 0.012413
+Process: 30, time for step 8: 0.365463
+Process: 77, time for step 1: 0.082564
+Process: 77, time for step 2: 0.000216
+Process: 77, time for step 3: 0.000862
+Process: 77, time for step 4: 0.286261
+Process: 77, time for step 5: 0.000388
+Process: 77, time for step 6: 0.080380
+Process: 77, time for step 7: 0.012231
+Process: 77, time for step 8: 0.446351
+Process: 79, time for step 1: 0.079494
+Process: 79, time for step 2: 0.000215
+Process: 79, time for step 3: 0.001012
+Process: 79, time for step 4: 0.291153
+Process: 79, time for step 5: 0.000392
+Process: 79, time for step 6: 0.075419
+Process: 79, time for step 7: 0.013358
+Process: 79, time for step 8: 0.447731
+Process: 50, time for step 1: 0.125704
+Process: 50, time for step 2: 0.000214
+Process: 50, time for step 3: 0.000816
+Process: 50, time for step 4: 0.205562
+Process: 50, time for step 5: 0.000392
+Process: 50, time for step 6: 0.161696
+Process: 50, time for step 7: 0.011186
+Process: 50, time for step 8: 0.403580
+Process: 19, time for step 1: 0.184474
+Process: 19, time for step 2: 0.000219
+Process: 19, time for step 3: 0.000770
+Process: 19, time for step 4: 0.082548
+Process: 19, time for step 5: 0.000387
+Process: 19, time for step 6: 0.284144
+Process: 19, time for step 7: 0.010652
+Process: 19, time for step 8: 0.345991
+Process: 54, time for step 1: 0.116434
+Process: 54, time for step 2: 0.000220
+Process: 54, time for step 3: 0.000870
+Process: 54, time for step 4: 0.219922
+Process: 54, time for step 5: 0.000392
+Process: 54, time for step 6: 0.147413
+Process: 54, time for step 7: 0.012264
+Process: 54, time for step 8: 0.411544
+Process: 75, time for step 1: 0.085309
+Process: 75, time for step 2: 0.000215
+Process: 75, time for step 3: 0.000882
+Process: 75, time for step 4: 0.282155
+Process: 75, time for step 5: 0.000395
+Process: 75, time for step 6: 0.084593
+Process: 75, time for step 7: 0.012085
+Process: 75, time for step 8: 0.443085
+Process: 48, time for step 1: 0.129395
+Process: 48, time for step 2: 0.000216
+Process: 48, time for step 3: 0.000725
+Process: 48, time for step 4: 0.198535
+Process: 48, time for step 5: 0.000401
+Process: 48, time for step 6: 0.168933
+Process: 48, time for step 7: 0.009341
+Process: 48, time for step 8: 0.402007
+Process: 73, time for step 1: 0.088439
+Process: 73, time for step 2: 0.000219
+Process: 73, time for step 3: 0.000790
+Process: 73, time for step 4: 0.277777
+Process: 73, time for step 5: 0.000394
+Process: 73, time for step 6: 0.089051
+Process: 73, time for step 7: 0.010374
+Process: 73, time for step 8: 0.442281
+Process: 52, time for step 1: 0.122531
+Process: 52, time for step 2: 0.000220
+Process: 52, time for step 3: 0.000787
+Process: 52, time for step 4: 0.212549
+Process: 52, time for step 5: 0.000398
+Process: 52, time for step 6: 0.155025
+Process: 52, time for step 7: 0.010860
+Process: 52, time for step 8: 0.406734
+Process: 11, time for step 1: 0.198287
+Process: 11, time for step 2: 0.000218
+Process: 11, time for step 3: 0.000775
+Process: 11, time for step 4: 0.050905
+Process: 11, time for step 5: 0.000395
+Process: 11, time for step 6: 0.316354
+Process: 11, time for step 7: 0.011495
+Process: 11, time for step 8: 0.330800
+Process: 31, time for step 1: 0.163109
+Process: 31, time for step 2: 0.000223
+Process: 31, time for step 3: 0.000948
+Process: 31, time for step 4: 0.135075
+Process: 31, time for step 5: 0.000391
+Process: 31, time for step 6: 0.230485
+Process: 31, time for step 7: 0.014027
+Process: 31, time for step 8: 0.364396
+Process: 38, time for step 1: 0.147137
+Process: 38, time for step 2: 0.000214
+Process: 38, time for step 3: 0.000785
+Process: 38, time for step 4: 0.159021
+Process: 38, time for step 5: 0.000397
+Process: 38, time for step 6: 0.208375
+Process: 38, time for step 7: 0.010535
+Process: 38, time for step 8: 0.383205
+Process: 27, time for step 1: 0.168578
+Process: 27, time for step 2: 0.000216
+Process: 27, time for step 3: 0.000854
+Process: 27, time for step 4: 0.116480
+Process: 27, time for step 5: 0.000390
+Process: 27, time for step 6: 0.250451
+Process: 27, time for step 7: 0.012146
+Process: 27, time for step 8: 0.359789
+Process: 34, time for step 1: 0.153345
+Process: 34, time for step 2: 0.000245
+Process: 34, time for step 3: 0.000712
+Process: 34, time for step 4: 0.145022
+Process: 34, time for step 5: 0.000406
+Process: 34, time for step 6: 0.222642
+Process: 34, time for step 7: 0.009130
+Process: 34, time for step 8: 0.378336
+Process: 25, time for step 1: 0.172475
+Process: 25, time for step 2: 0.000252
+Process: 25, time for step 3: 0.000773
+Process: 25, time for step 4: 0.107589
+Process: 25, time for step 5: 0.000399
+Process: 25, time for step 6: 0.259353
+Process: 25, time for step 7: 0.011049
+Process: 25, time for step 8: 0.357107
+Process: 32, time for step 1: 0.156847
+Process: 32, time for step 2: 0.000228
+Process: 32, time for step 3: 0.000692
+Process: 32, time for step 4: 0.138504
+Process: 32, time for step 5: 0.000410
+Process: 32, time for step 6: 0.229034
+Process: 32, time for step 7: 0.007982
+Process: 32, time for step 8: 0.376055
+Process: 29, time for step 1: 0.166915
+Process: 29, time for step 2: 0.000213
+Process: 29, time for step 3: 0.000839
+Process: 29, time for step 4: 0.124721
+Process: 29, time for step 5: 0.000388
+Process: 29, time for step 6: 0.241004
+Process: 29, time for step 7: 0.012384
+Process: 29, time for step 8: 0.362513
+Process: 21, time for step 1: 0.179742
+Process: 21, time for step 2: 0.000222
+Process: 21, time for step 3: 0.000773
+Process: 21, time for step 4: 0.090471
+Process: 21, time for step 5: 0.000388
+Process: 21, time for step 6: 0.276398
+Process: 21, time for step 7: 0.011095
+Process: 21, time for step 8: 0.349889
+Process: 36, time for step 1: 0.149595
+Process: 36, time for step 2: 0.000213
+Process: 36, time for step 3: 0.000725
+Process: 36, time for step 4: 0.151795
+Process: 36, time for step 5: 0.000396
+Process: 36, time for step 6: 0.216179
+Process: 36, time for step 7: 0.009195
+Process: 36, time for step 8: 0.381252
+Process: 23, time for step 1: 0.176969
+Process: 23, time for step 2: 0.000222
+Process: 23, time for step 3: 0.000842
+Process: 23, time for step 4: 0.099076
+Process: 23, time for step 5: 0.000389
+Process: 23, time for step 6: 0.267767
+Process: 23, time for step 7: 0.012546
+Process: 23, time for step 8: 0.351337
+Process: 8, time for step 1: 0.201080
+Process: 8, time for step 2: 0.000213
+Process: 8, time for step 3: 0.000678
+Process: 8, time for step 4: 0.038695
+Process: 8, time for step 5: 0.000393
+Process: 8, time for step 6: 0.328297
+Process: 8, time for step 7: 0.007683
+Process: 8, time for step 8: 0.332077
+Process: 17, time for step 1: 0.187568
+Process: 17, time for step 2: 0.000220
+Process: 17, time for step 3: 0.000719
+Process: 17, time for step 4: 0.075142
+Process: 17, time for step 5: 0.000396
+Process: 17, time for step 6: 0.291861
+Process: 17, time for step 7: 0.009342
+Process: 17, time for step 8: 0.343445
+Process: 9, time for step 1: 0.200928
+Process: 9, time for step 2: 0.000220
+Process: 9, time for step 3: 0.000719
+Process: 9, time for step 4: 0.042751
+Process: 9, time for step 5: 0.000395
+Process: 9, time for step 6: 0.324303
+Process: 9, time for step 7: 0.009392
+Process: 9, time for step 8: 0.330261
+Process: 12, time for step 1: 0.195923
+Process: 12, time for step 2: 0.000218
+Process: 12, time for step 3: 0.000725
+Process: 12, time for step 4: 0.054577
+Process: 12, time for step 5: 0.000394
+Process: 12, time for step 6: 0.311556
+Process: 12, time for step 7: 0.009779
+Process: 12, time for step 8: 0.335796
+Process: 15, time for step 1: 0.191951
+Process: 15, time for step 2: 0.000220
+Process: 15, time for step 3: 0.000831
+Process: 15, time for step 4: 0.067968
+Process: 15, time for step 5: 0.000386
+Process: 15, time for step 6: 0.298978
+Process: 15, time for step 7: 0.012358
+Process: 15, time for step 8: 0.335911
+Process: 10, time for step 1: 0.198281
+Process: 10, time for step 2: 0.000218
+Process: 10, time for step 3: 0.000716
+Process: 10, time for step 4: 0.046596
+Process: 10, time for step 5: 0.000394
+Process: 10, time for step 6: 0.320430
+Process: 10, time for step 7: 0.009030
+Process: 10, time for step 8: 0.333289
+Process: 13, time for step 1: 0.195504
+Process: 13, time for step 2: 0.000225
+Process: 13, time for step 3: 0.000769
+Process: 13, time for step 4: 0.058554
+Process: 13, time for step 5: 0.000390
+Process: 13, time for step 6: 0.308435
+Process: 13, time for step 7: 0.011141
+Process: 13, time for step 8: 0.334201
+Process: 58, time for step 1: 0.110914
+Process: 58, time for step 2: 0.000211
+Process: 58, time for step 3: 0.000877
+Process: 58, time for step 4: 0.235738
+Process: 58, time for step 5: 0.000393
+Process: 58, time for step 6: 0.131754
+Process: 58, time for step 7: 0.012431
+Process: 58, time for step 8: 0.417072
+Process: 47, time for step 1: 0.133902
+Process: 47, time for step 2: 0.000217
+Process: 47, time for step 3: 0.000959
+Process: 47, time for step 4: 0.195233
+Process: 47, time for step 5: 0.000389
+Process: 47, time for step 6: 0.170581
+Process: 47, time for step 7: 0.014029
+Process: 47, time for step 8: 0.393451
+Process: 62, time for step 1: 0.104696
+Process: 62, time for step 2: 0.000209
+Process: 62, time for step 3: 0.001011
+Process: 62, time for step 4: 0.252100
+Process: 62, time for step 5: 0.000391
+Process: 62, time for step 6: 0.115005
+Process: 62, time for step 7: 0.013258
+Process: 62, time for step 8: 0.422734
+Process: 41, time for step 1: 0.145426
+Process: 41, time for step 2: 0.000214
+Process: 41, time for step 3: 0.000774
+Process: 41, time for step 4: 0.171139
+Process: 41, time for step 5: 0.000391
+Process: 41, time for step 6: 0.194773
+Process: 41, time for step 7: 0.010617
+Process: 41, time for step 8: 0.386006
+Process: 56, time for step 1: 0.113767
+Process: 56, time for step 2: 0.000219
+Process: 56, time for step 3: 0.000803
+Process: 56, time for step 4: 0.227744
+Process: 56, time for step 5: 0.000397
+Process: 56, time for step 6: 0.139524
+Process: 56, time for step 7: 0.010584
+Process: 56, time for step 8: 0.416380
+Process: 39, time for step 1: 0.146766
+Process: 39, time for step 2: 0.000223
+Process: 39, time for step 3: 0.000855
+Process: 39, time for step 4: 0.162928
+Process: 39, time for step 5: 0.000387
+Process: 39, time for step 6: 0.203885
+Process: 39, time for step 7: 0.011889
+Process: 39, time for step 8: 0.381947
+Process: 60, time for step 1: 0.108026
+Process: 60, time for step 2: 0.000217
+Process: 60, time for step 3: 0.000870
+Process: 60, time for step 4: 0.243592
+Process: 60, time for step 5: 0.000395
+Process: 60, time for step 6: 0.123870
+Process: 60, time for step 7: 0.011836
+Process: 60, time for step 8: 0.420908
+Process: 37, time for step 1: 0.150086
+Process: 37, time for step 2: 0.000230
+Process: 37, time for step 3: 0.000775
+Process: 37, time for step 4: 0.155033
+Process: 37, time for step 5: 0.000389
+Process: 37, time for step 6: 0.211837
+Process: 37, time for step 7: 0.010873
+Process: 37, time for step 8: 0.379752
+Process: 35, time for step 1: 0.153016
+Process: 35, time for step 2: 0.000214
+Process: 35, time for step 3: 0.000781
+Process: 35, time for step 4: 0.148562
+Process: 35, time for step 5: 0.000389
+Process: 35, time for step 6: 0.218438
+Process: 35, time for step 7: 0.010802
+Process: 35, time for step 8: 0.376733
+Process: 14, time for step 1: 0.193029
+Process: 14, time for step 2: 0.000211
+Process: 14, time for step 3: 0.000771
+Process: 14, time for step 4: 0.063261
+Process: 14, time for step 5: 0.000407
+Process: 14, time for step 6: 0.302701
+Process: 14, time for step 7: 0.011733
+Process: 14, time for step 8: 0.336798
+Process: 33, time for step 1: 0.155734
+Process: 33, time for step 2: 0.000219
+Process: 33, time for step 3: 0.000792
+Process: 33, time for step 4: 0.141930
+Process: 33, time for step 5: 0.000395
+Process: 33, time for step 6: 0.224992
+Process: 33, time for step 7: 0.010053
+Process: 33, time for step 8: 0.374642
+Process: 100, time for step 1: 0.046947
+Process: 100, time for step 2: 0.000220
+Process: 100, time for step 3: 0.000808
+Process: 100, time for step 4: 0.327666
+Process: 100, time for step 5: 0.000403
+Process: 100, time for step 6: 0.038548
+Process: 100, time for step 7: 0.010629
+Process: 100, time for step 8: 0.483774
+Process: 89, time for step 1: 0.064489
+Process: 89, time for step 2: 0.000216
+Process: 91, time for step 1: 0.062957
+Process: 91, time for step 2: 0.000211
+Process: 91, time for step 3: 0.000998
+Process: 91, time for step 4: 0.313672
+Process: 91, time for step 5: 0.000384
+Process: 91, time for step 6: 0.051789
+Process: 91, time for step 7: 0.013190
+Process: 91, time for step 8: 0.465462
+Process: 96, time for step 1: 0.053138
+Process: 96, time for step 2: 0.000219
+Process: 96, time for step 3: 0.000737
+Process: 96, time for step 4: 0.323040
+Process: 96, time for step 5: 0.000401
+Process: 96, time for step 6: 0.043306
+Process: 96, time for step 7: 0.009353
+Process: 96, time for step 8: 0.479358
+Process: 95, time for step 1: 0.056305
+Process: 95, time for step 2: 0.000207
+Process: 95, time for step 3: 0.001165
+Process: 95, time for step 4: 0.321956
+Process: 95, time for step 5: 0.000386
+Process: 95, time for step 6: 0.044238
+Process: 95, time for step 7: 0.014434
+Process: 95, time for step 8: 0.469959
+Process: 102, time for step 1: 0.044398
+Process: 102, time for step 2: 0.000217
+Process: 102, time for step 3: 0.000913
+Process: 102, time for step 4: 0.329752
+Process: 102, time for step 5: 0.000403
+Process: 102, time for step 6: 0.036281
+Process: 102, time for step 7: 0.012141
+Process: 102, time for step 8: 0.484874
+Process: 93, time for step 1: 0.059114
+Process: 93, time for step 2: 0.000212
+Process: 93, time for step 3: 0.000998
+Process: 93, time for step 4: 0.317295
+Process: 93, time for step 5: 0.000387
+Process: 93, time for step 6: 0.049052
+Process: 93, time for step 7: 0.012752
+Process: 93, time for step 8: 0.468874
+Process: 109, time for step 1: 0.034412
+Process: 109, time for step 2: 0.000215
+Process: 109, time for step 3: 0.001024
+Process: 109, time for step 4: 0.337109
+Process: 109, time for step 5: 0.000392
+Process: 109, time for step 6: 0.029151
+Process: 109, time for step 7: 0.012781
+Process: 109, time for step 8: 0.493658
+Process: 98, time for step 1: 0.049969
+Process: 98, time for step 2: 0.000217
+Process: 98, time for step 3: 0.000791
+Process: 98, time for step 4: 0.325395
+Process: 98, time for step 5: 0.000401
+Process: 98, time for step 6: 0.040734
+Process: 98, time for step 7: 0.010611
+Process: 98, time for step 8: 0.480896
+Process: 0, time for step 2: 0.000297
+Process: 0, time for step 3: 0.000682
+Process: 0, time for step 4: 0.007413
+Process: 0, time for step 5: 0.000403
+Process: 0, time for step 6: 0.361084
+Process: 0, time for step 7: 0.007703
+Process: 0, time for step 8: 0.315717
+Process: 118, time for step 1: 0.020290
+Process: 118, time for step 2: 0.000210
+Process: 118, time for step 3: 0.001019
+Process: 118, time for step 4: 0.342794
+Process: 118, time for step 5: 0.000389
+Process: 118, time for step 6: 0.024294
+Process: 118, time for step 7: 0.013126
+Process: 118, time for step 8: 0.506838
+Process: 112, time for step 1: 0.028711
+Process: 112, time for step 2: 0.000215
+Process: 112, time for step 3: 0.000805
+Process: 112, time for step 4: 0.339802
+Process: 112, time for step 5: 0.000393
+Process: 112, time for step 6: 0.027468
+Process: 112, time for step 7: 0.010999
+Process: 112, time for step 8: 0.500721
+Process: 114, time for step 1: 0.025828
+Process: 114, time for step 2: 0.000213
+Process: 114, time for step 3: 0.000888
+Process: 114, time for step 4: 0.340963
+Process: 114, time for step 5: 0.000391
+Process: 114, time for step 6: 0.026195
+Process: 114, time for step 7: 0.011773
+Process: 114, time for step 8: 0.502818
+Process: 116, time for step 1: 0.023126
+Process: 116, time for step 2: 0.000224
+Process: 116, time for step 3: 0.000902
+Process: 116, time for step 4: 0.342072
+Process: 116, time for step 5: 0.000402
+Process: 116, time for step 6: 0.025132
+Process: 116, time for step 7: 0.012131
+Process: 116, time for step 8: 0.505078
+Process: 126, time for step 1: 0.009860
+Process: 126, time for step 2: 0.000222
+Process: 126, time for step 3: 0.001239
+Process: 126, time for step 4: 0.344548
+Process: 126, time for step 5: 0.000390
+Process: 126, time for step 6: 0.022617
+Process: 126, time for step 7: 0.014179
+Process: 126, time for step 8: 0.515908
+Process: 120, time for step 1: 0.016525
+Process: 120, time for step 2: 0.000215
+Process: 120, time for step 3: 0.000900
+Process: 120, time for step 4: 0.343758
+Process: 120, time for step 5: 0.000394
+Process: 120, time for step 6: 0.023642
+Process: 120, time for step 7: 0.011752
+Process: 120, time for step 8: 0.512163
+Process: 67, time for step 2: 0.000229
+Process: 67, time for step 3: 0.000792
+Process: 67, time for step 4: 0.265635
+Process: 67, time for step 5: 0.000392
+Process: 67, time for step 6: 0.101232
+Process: 67, time for step 7: 0.010350
+Process: 67, time for step 8: 0.432761
+Process: 122, time for step 1: 0.014023
+Process: 122, time for step 2: 0.000217
+Process: 122, time for step 3: 0.001018
+Process: 122, time for step 4: 0.344182
+Process: 122, time for step 5: 0.000391
+Process: 122, time for step 6: 0.023135
+Process: 122, time for step 7: 0.012787
+Process: 122, time for step 8: 0.513165
+Process: 124, time for step 1: 0.011720
+Process: 124, time for step 2: 0.000216
+Process: 124, time for step 3: 0.001034
+Process: 124, time for step 4: 0.344071
+Process: 124, time for step 5: 0.000403
+Process: 124, time for step 6: 0.023161
+Process: 124, time for step 7: 0.012526
+Process: 124, time for step 8: 0.515879
+Process: 88, time for step 1: 0.065585
+Process: 88, time for step 2: 0.000220
+Process: 88, time for step 3: 0.000809
+Process: 88, time for step 4: 0.307972
+Process: 88, time for step 5: 0.000395
+Process: 88, time for step 6: 0.058517
+Process: 88, time for step 7: 0.010908
+Process: 88, time for step 8: 0.465311
+Process: 94, time for step 1: 0.055886
+Process: 94, time for step 2: 0.000214
+Process: 94, time for step 3: 0.001029
+Process: 94, time for step 4: 0.319382
+Process: 94, time for step 5: 0.000393
+Process: 94, time for step 6: 0.046881
+Process: 94, time for step 7: 0.013210
+Process: 94, time for step 8: 0.471311
+Process: 117, time for step 1: 0.022788
+Process: 117, time for step 2: 0.000212
+Process: 117, time for step 3: 0.000988
+Process: 117, time for step 4: 0.342437
+Process: 117, time for step 5: 0.000396
+Process: 117, time for step 6: 0.024786
+Process: 117, time for step 7: 0.013008
+Process: 117, time for step 8: 0.504128
+Process: 92, time for step 1: 0.060190
+Process: 92, time for step 2: 0.000214
+Process: 92, time for step 3: 0.000897
+Process: 92, time for step 4: 0.315402
+Process: 92, time for step 5: 0.000397
+Process: 92, time for step 6: 0.051020
+Process: 92, time for step 7: 0.012073
+Process: 92, time for step 8: 0.469483
+Process: 115, time for step 1: 0.025516
+Process: 115, time for step 2: 0.000218
+Process: 115, time for step 3: 0.001004
+Process: 115, time for step 4: 0.341462
+Process: 115, time for step 5: 0.000395
+Process: 115, time for step 6: 0.025760
+Process: 115, time for step 7: 0.013234
+Process: 115, time for step 8: 0.501139
+Process: 119, time for step 1: 0.019185
+Process: 119, time for step 2: 0.000214
+Process: 119, time for step 3: 0.001216
+Process: 119, time for step 4: 0.343410
+Process: 119, time for step 5: 0.000400
+Process: 119, time for step 6: 0.023561
+Process: 119, time for step 7: 0.014291
+Process: 119, time for step 8: 0.506405
+Process: 90, time for step 1: 0.062485
+Process: 90, time for step 2: 0.000211
+Process: 90, time for step 3: 0.000886
+Process: 90, time for step 4: 0.311552
+Process: 90, time for step 5: 0.000397
+Process: 90, time for step 6: 0.054845
+Process: 90, time for step 7: 0.011827
+Process: 90, time for step 8: 0.466991
+Process: 113, time for step 1: 0.028479
+Process: 113, time for step 2: 0.000218
+Process: 113, time for step 3: 0.000877
+Process: 113, time for step 4: 0.340321
+Process: 113, time for step 5: 0.000397
+Process: 113, time for step 6: 0.027055
+Process: 113, time for step 7: 0.011670
+Process: 113, time for step 8: 0.500108
+Process: 76, time for step 1: 0.083343
+Process: 76, time for step 2: 0.000217
+Process: 76, time for step 3: 0.000795
+Process: 76, time for step 4: 0.283765
+Process: 76, time for step 5: 0.000400
+Process: 76, time for step 6: 0.082347
+Process: 76, time for step 7: 0.010132
+Process: 76, time for step 8: 0.448410
+Process: 49, time for step 1: 0.128997
+Process: 49, time for step 2: 0.000238
+Process: 49, time for step 3: 0.000810
+Process: 49, time for step 4: 0.201916
+Process: 49, time for step 5: 0.000407
+Process: 49, time for step 6: 0.164822
+Process: 49, time for step 7: 0.011102
+Process: 49, time for step 8: 0.400467
+Process: 72, time for step 1: 0.088381
+Process: 72, time for step 2: 0.000214
+Process: 72, time for step 3: 0.000740
+Process: 72, time for step 4: 0.275510
+Process: 72, time for step 5: 0.000395
+Process: 72, time for step 6: 0.090756
+Process: 72, time for step 7: 0.009083
+Process: 72, time for step 8: 0.443953
+Process: 55, time for step 1: 0.116972
+Process: 55, time for step 2: 0.000211
+Process: 55, time for step 3: 0.000966
+Process: 55, time for step 4: 0.223829
+Process: 55, time for step 5: 0.000396
+Process: 55, time for step 6: 0.142800
+Process: 55, time for step 7: 0.013762
+Process: 55, time for step 8: 0.409736
+Process: 74, time for step 1: 0.086189
+Process: 74, time for step 2: 0.000215
+Process: 74, time for step 3: 0.000820
+Process: 74, time for step 4: 0.279651
+Process: 74, time for step 5: 0.000397
+Process: 74, time for step 6: 0.086526
+Process: 74, time for step 7: 0.010951
+Process: 74, time for step 8: 0.444693
+Process: 103, time for step 1: 0.044081
+Process: 103, time for step 2: 0.000213
+Process: 103, time for step 3: 0.001019
+Process: 103, time for step 4: 0.331252
+Process: 103, time for step 5: 0.000394
+Process: 103, time for step 6: 0.036253
+Process: 103, time for step 7: 0.013447
+Process: 103, time for step 8: 0.482229
+Process: 78, time for step 1: 0.081114
+Process: 78, time for step 2: 0.000219
+Process: 78, time for step 3: 0.000922
+Process: 78, time for step 4: 0.288492
+Process: 78, time for step 5: 0.000396
+Process: 78, time for step 6: 0.076818
+Process: 78, time for step 7: 0.012521
+Process: 78, time for step 8: 0.449151
+Process: 97, time for step 1: 0.052857
+Process: 97, time for step 2: 0.000223
+Process: 97, time for step 3: 0.000794
+Process: 97, time for step 4: 0.324738
+Process: 97, time for step 5: 0.000396
+Process: 97, time for step 6: 0.041992
+Process: 97, time for step 7: 0.010876
+Process: 97, time for step 8: 0.477589
+Process: 68, time for step 1: 0.095801
+Process: 68, time for step 2: 0.000219
+Process: 68, time for step 3: 0.000743
+Process: 68, time for step 4: 0.267056
+Process: 68, time for step 5: 0.000403
+Process: 68, time for step 6: 0.099218
+Process: 68, time for step 7: 0.009094
+Process: 68, time for step 8: 0.437278
+Process: 101, time for step 1: 0.047461
+Process: 101, time for step 2: 0.000218
+Process: 101, time for step 3: 0.000867
+Process: 101, time for step 4: 0.328845
+Process: 101, time for step 5: 0.000389
+Process: 101, time for step 6: 0.037720
+Process: 101, time for step 7: 0.011661
+Process: 101, time for step 8: 0.482184
+Process: 66, time for step 1: 0.098193
+Process: 66, time for step 2: 0.000215
+Process: 66, time for step 3: 0.000745
+Process: 66, time for step 4: 0.263061
+Process: 66, time for step 5: 0.000395
+Process: 66, time for step 6: 0.103283
+Process: 66, time for step 7: 0.009265
+Process: 66, time for step 8: 0.434370
+Process: 99, time for step 1: 0.050728
+Process: 99, time for step 2: 0.000222
+Process: 99, time for step 3: 0.000882
+Process: 99, time for step 4: 0.326689
+Process: 99, time for step 5: 0.000389
+Process: 99, time for step 6: 0.039824
+Process: 99, time for step 7: 0.012051
+Process: 99, time for step 8: 0.478975
+Process: 85, time for step 1: 0.070608
+Process: 85, time for step 2: 0.000216
+Process: 85, time for step 3: 0.000863
+Process: 85, time for step 4: 0.302134
+Process: 85, time for step 5: 0.000389
+Process: 85, time for step 6: 0.064433
+Process: 85, time for step 7: 0.011923
+Process: 85, time for step 8: 0.458751
+Process: 64, time for step 1: 0.100849
+Process: 64, time for step 2: 0.000221
+Process: 64, time for step 3: 0.000690
+Process: 64, time for step 4: 0.258979
+Process: 64, time for step 5: 0.000398
+Process: 64, time for step 6: 0.107400
+Process: 64, time for step 7: 0.007813
+Process: 64, time for step 8: 0.433232
+Process: 87, time for step 1: 0.067203
+Process: 87, time for step 2: 0.000216
+Process: 87, time for step 3: 0.000998
+Process: 87, time for step 4: 0.306297
+Process: 87, time for step 5: 0.000392
+Process: 87, time for step 6: 0.060126
+Process: 87, time for step 7: 0.013052
+Process: 87, time for step 8: 0.460350
+Process: 70, time for step 1: 0.092106
+Process: 70, time for step 2: 0.000213
+Process: 70, time for step 3: 0.000814
+Process: 70, time for step 4: 0.271085
+Process: 70, time for step 5: 0.000391
+Process: 70, time for step 6: 0.095298
+Process: 70, time for step 7: 0.010423
+Process: 70, time for step 8: 0.439159
+Process: 83, time for step 1: 0.074001
+Process: 83, time for step 2: 0.000217
+Process: 83, time for step 3: 0.000886
+Process: 83, time for step 4: 0.298577
+Process: 83, time for step 5: 0.000388
+Process: 83, time for step 6: 0.068128
+Process: 83, time for step 7: 0.011925
+Process: 83, time for step 8: 0.455184
+Process: 86, time for step 1: 0.067704
+Process: 86, time for step 2: 0.000215
+Process: 86, time for step 3: 0.000884
+Process: 86, time for step 4: 0.303792
+Process: 86, time for step 5: 0.000399
+Process: 86, time for step 6: 0.062588
+Process: 86, time for step 7: 0.011781
+Process: 86, time for step 8: 0.461702
+Process: 81, time for step 1: 0.076794
+Process: 81, time for step 2: 0.000221
+Process: 81, time for step 3: 0.000793
+Process: 81, time for step 4: 0.294812
+Process: 81, time for step 5: 0.000395
+Process: 81, time for step 6: 0.071970
+Process: 81, time for step 7: 0.010438
+Process: 81, time for step 8: 0.454013
+Process: 80, time for step 1: 0.076621
+Process: 80, time for step 2: 0.000216
+Process: 80, time for step 3: 0.000740
+Process: 80, time for step 4: 0.292744
+Process: 80, time for step 5: 0.000409
+Process: 80, time for step 6: 0.073706
+Process: 80, time for step 7: 0.009024
+Process: 80, time for step 8: 0.455690
+Process: 51, time for step 1: 0.126712
+Process: 51, time for step 2: 0.000219
+Process: 51, time for step 3: 0.000894
+Process: 51, time for step 4: 0.208694
+Process: 51, time for step 5: 0.000393
+Process: 51, time for step 6: 0.157774
+Process: 51, time for step 7: 0.012083
+Process: 51, time for step 8: 0.402427
+Process: 53, time for step 1: 0.121536
+Process: 53, time for step 2: 0.000219
+Process: 53, time for step 3: 0.000870
+Process: 53, time for step 4: 0.215784
+Process: 53, time for step 5: 0.000394
+Process: 53, time for step 6: 0.151014
+Process: 53, time for step 7: 0.012080
+Process: 53, time for step 8: 0.407345
+Process: 82, time for step 1: 0.073968
+Process: 82, time for step 2: 0.000218
+Process: 82, time for step 3: 0.000810
+Process: 82, time for step 4: 0.296466
+Process: 82, time for step 5: 0.000402
+Process: 82, time for step 6: 0.070087
+Process: 82, time for step 7: 0.010975
+Process: 82, time for step 8: 0.456174
+Process: 123, time for step 1: 0.014421
+Process: 123, time for step 2: 0.000211
+Process: 123, time for step 3: 0.001184
+Process: 123, time for step 4: 0.344150
+Process: 123, time for step 5: 0.000396
+Process: 123, time for step 6: 0.022874
+Process: 123, time for step 7: 0.013752
+Process: 123, time for step 8: 0.511805
+Process: 84, time for step 1: 0.071020
+Process: 84, time for step 2: 0.000213
+Process: 84, time for step 3: 0.000837
+Process: 84, time for step 4: 0.300198
+Process: 84, time for step 5: 0.000405
+Process: 84, time for step 6: 0.066340
+Process: 84, time for step 7: 0.010748
+Process: 84, time for step 8: 0.459332
+Process: 121, time for step 1: 0.016261
+Process: 121, time for step 2: 0.000220
+Process: 121, time for step 3: 0.001016
+Process: 121, time for step 4: 0.343676
+Process: 121, time for step 5: 0.000402
+Process: 121, time for step 6: 0.023224
+Process: 121, time for step 7: 0.012772
+Process: 121, time for step 8: 0.511093
+Process: 127, time for step 1: 0.011333
+Process: 127, time for step 2: 0.000211
+Process: 127, time for step 3: 0.001468
+Process: 127, time for step 4: 0.344291
+Process: 127, time for step 5: 0.000394
+Process: 127, time for step 6: 0.022425
+Process: 127, time for step 7: 0.014933
+Process: 127, time for step 8: 0.513585
+Process: 46, time for step 1: 0.134208
+Process: 46, time for step 2: 0.000213
+Process: 46, time for step 3: 0.000858
+Process: 46, time for step 4: 0.190852
+Process: 46, time for step 5: 0.000395
+Process: 46, time for step 6: 0.175279
+Process: 46, time for step 7: 0.012384
+Process: 46, time for step 8: 0.395339
+Process: 125, time for step 1: 0.011813
+Process: 125, time for step 2: 0.000214
+Process: 125, time for step 3: 0.001203
+Process: 125, time for step 4: 0.344376
+Process: 125, time for step 5: 0.000405
+Process: 125, time for step 6: 0.022341
+Process: 125, time for step 7: 0.014008
+Process: 125, time for step 8: 0.514424
+Process: 44, time for step 1: 0.137407
+Process: 44, time for step 2: 0.000218
+Process: 44, time for step 3: 0.000801
+Process: 44, time for step 4: 0.182702
+Process: 44, time for step 5: 0.000392
+Process: 44, time for step 6: 0.184538
+Process: 44, time for step 7: 0.010212
+Process: 44, time for step 8: 0.393324
+Process: 63, time for step 1: 0.105113
+Process: 63, time for step 2: 0.000220
+Process: 63, time for step 3: 0.001157
+Process: 63, time for step 4: 0.256943
+Process: 63, time for step 5: 0.000386
+Process: 63, time for step 6: 0.108609
+Process: 63, time for step 7: 0.015151
+Process: 63, time for step 8: 0.421053
+Process: 40, time for step 1: 0.143797
+Process: 40, time for step 2: 0.000218
+Process: 40, time for step 3: 0.000743
+Process: 40, time for step 4: 0.167785
+Process: 40, time for step 5: 0.000398
+Process: 40, time for step 6: 0.199867
+Process: 40, time for step 7: 0.009671
+Process: 40, time for step 8: 0.387070
+Process: 57, time for step 1: 0.114058
+Process: 57, time for step 2: 0.000222
+Process: 57, time for step 3: 0.000844
+Process: 57, time for step 4: 0.231791
+Process: 57, time for step 5: 0.000390
+Process: 57, time for step 6: 0.134808
+Process: 57, time for step 7: 0.012566
+Process: 57, time for step 8: 0.414316
+Process: 42, time for step 1: 0.139735
+Process: 42, time for step 2: 0.000215
+Process: 42, time for step 3: 0.000802
+Process: 42, time for step 4: 0.174900
+Process: 42, time for step 5: 0.000394
+Process: 42, time for step 6: 0.192784
+Process: 42, time for step 7: 0.010845
+Process: 42, time for step 8: 0.389807
+Process: 61, time for step 1: 0.108395
+Process: 61, time for step 2: 0.000212
+Process: 61, time for step 3: 0.000975
+Process: 61, time for step 4: 0.247271
+Process: 61, time for step 5: 0.000383
+Process: 61, time for step 6: 0.118507
+Process: 61, time for step 7: 0.013100
+Process: 61, time for step 8: 0.419815
+Process: 59, time for step 1: 0.110903
+Process: 59, time for step 2: 0.000211
+Process: 59, time for step 3: 0.000972
+Process: 59, time for step 4: 0.239483
+Process: 59, time for step 5: 0.000383
+Process: 59, time for step 6: 0.126991
+Process: 59, time for step 7: 0.013479
+Process: 59, time for step 8: 0.416233
+Process: 108, time for step 1: 0.035660
+Process: 108, time for step 2: 0.000212
+Process: 108, time for step 3: 0.000887
+Process: 108, time for step 4: 0.336043
+Process: 108, time for step 5: 0.000396
+Process: 108, time for step 6: 0.030392
+Process: 108, time for step 7: 0.011798
+Process: 108, time for step 8: 0.493714
+Process: 45, time for step 1: 0.137271
+Process: 45, time for step 2: 0.000213
+Process: 45, time for step 3: 0.000849
+Process: 45, time for step 4: 0.186242
+Process: 45, time for step 5: 0.000391
+Process: 45, time for step 6: 0.179591
+Process: 45, time for step 7: 0.012562
+Process: 45, time for step 8: 0.392063
+Process: 104, time for step 1: 0.042125
+Process: 104, time for step 2: 0.000218
+Process: 104, time for step 3: 0.000795
+Process: 104, time for step 4: 0.332126
+Process: 104, time for step 5: 0.000401
+Process: 104, time for step 6: 0.034319
+Process: 104, time for step 7: 0.010467
+Process: 104, time for step 8: 0.489391
+Process: 43, time for step 1: 0.141441
+Process: 43, time for step 2: 0.000212
+Process: 43, time for step 3: 0.000862
+Process: 43, time for step 4: 0.178706
+Process: 43, time for step 5: 0.000394
+Process: 43, time for step 6: 0.186830
+Process: 43, time for step 7: 0.012800
+Process: 43, time for step 8: 0.387955
+Process: 107, time for step 1: 0.038314
+Process: 107, time for step 2: 0.000216
+Process: 107, time for step 3: 0.000987
+Process: 107, time for step 4: 0.335209
+Process: 107, time for step 5: 0.000402
+Process: 107, time for step 6: 0.031370
+Process: 107, time for step 7: 0.013013
+Process: 107, time for step 8: 0.489237
+Process: 106, time for step 1: 0.038794
+Process: 106, time for step 2: 0.000212
+Process: 106, time for step 3: 0.000908
+Process: 106, time for step 4: 0.334013
+Process: 106, time for step 5: 0.000392
+Process: 106, time for step 6: 0.032353
+Process: 106, time for step 7: 0.011890
+Process: 106, time for step 8: 0.490557
+Process: 111, time for step 1: 0.031581
+Process: 111, time for step 2: 0.000211
+Process: 111, time for step 3: 0.001188
+Process: 111, time for step 4: 0.339178
+Process: 111, time for step 5: 0.000393
+Process: 111, time for step 6: 0.028305
+Process: 111, time for step 7: 0.014060
+Process: 111, time for step 8: 0.493759
+Process: 110, time for step 1: 0.032048
+Process: 110, time for step 2: 0.000214
+Process: 110, time for step 3: 0.001002
+Process: 110, time for step 4: 0.337937
+Process: 110, time for step 5: 0.000397
+Process: 110, time for step 6: 0.027993
+Process: 110, time for step 7: 0.012967
+Process: 110, time for step 8: 0.496423
+Process: 105, time for step 1: 0.041340
+Process: 105, time for step 2: 0.000214
+Process: 105, time for step 3: 0.000874
+Process: 105, time for step 4: 0.333241
+Process: 105, time for step 5: 0.000390
+Process: 105, time for step 6: 0.033511
+Process: 105, time for step 7: 0.011736
+Process: 105, time for step 8: 0.487743
+Process: 89, time for step 3: 0.000868
+Process: 89, time for step 4: 0.309967
+Process: 89, time for step 5: 0.000389
+Process: 89, time for step 6: 0.056679
+Process: 89, time for step 7: 0.012088
+Process: 89, time for step 8: 0.464013
+Elapsed time for proc 15: 0.914915
+Elapsed time for proc 11: 0.915235
+Elapsed time for proc 6: 0.915406
+Elapsed time for proc 46: 0.915401
+Elapsed time for proc 63: 0.915056
+Elapsed time for proc 73: 0.915218
+Elapsed time for proc 127: 0.915151
+Elapsed time for proc 40: 0.915290
+Elapsed time for proc 42: 0.915344
+Elapsed time for proc 50: 0.915036
+Elapsed time for proc 71: 0.915253
+Elapsed time for proc 69: 0.915228
+Elapsed time for proc 5: 0.915094
+Elapsed time for proc 49: 0.914850
+Elapsed time for proc 38: 0.915362
+Elapsed time for proc 8: 0.915037
+Elapsed time for proc 0: 0.915192
+Elapsed time for proc 25: 0.915069
+Elapsed time for proc 7: 0.914788
+Elapsed time for proc 51: 0.915210
+Elapsed time for proc 53: 0.915348
+Elapsed time for proc 89: 0.914790
+Elapsed time for proc 4: 0.915218
+Elapsed time for proc 56: 0.915191
+Elapsed time for proc 80: 0.914886
+Elapsed time for proc 32: 0.915439
+Elapsed time for proc 20: 0.915063
+Elapsed time for proc 1: 0.915081
+Elapsed time for proc 81: 0.915282
+Elapsed time for proc 54: 0.915067
+Elapsed time for proc 44: 0.915373
+Elapsed time for proc 14: 0.914915
+Elapsed time for proc 108: 0.914974
+Elapsed time for proc 105: 0.915111
+Elapsed time for proc 30: 0.915112
+Elapsed time for proc 45: 0.915213
+Elapsed time for proc 26: 0.914840
+Elapsed time for proc 66: 0.915242
+Elapsed time for proc 119: 0.915117
+Elapsed time for proc 2: 0.914870
+Elapsed time for proc 107: 0.915054
+Elapsed time for proc 125: 0.915343
+Elapsed time for proc 36: 0.915132
+Elapsed time for proc 67: 0.915302
+Elapsed time for proc 99: 0.915557
+Elapsed time for proc 85: 0.915353
+Elapsed time for proc 87: 0.914921
+Elapsed time for proc 83: 0.915275
+Elapsed time for proc 39: 0.915124
+Elapsed time for proc 112: 0.914978
+Elapsed time for proc 114: 0.914872
+Elapsed time for proc 12: 0.914955
+Elapsed time for proc 75: 0.914876
+Elapsed time for proc 97: 0.915363
+Elapsed time for proc 17: 0.914785
+Elapsed time for proc 21: 0.915043
+Elapsed time for proc 68: 0.915453
+Elapsed time for proc 52: 0.914965
+Elapsed time for proc 70: 0.915241
+Elapsed time for proc 91: 0.915124
+Elapsed time for proc 23: 0.915280
+Elapsed time for proc 33: 0.914749
+Elapsed time for proc 76: 0.915173
+Elapsed time for proc 124: 0.915172
+Elapsed time for proc 116: 0.915053
+Elapsed time for proc 47: 0.915252
+Elapsed time for proc 41: 0.915199
+Elapsed time for proc 120: 0.915169
+Elapsed time for proc 122: 0.914761
+Elapsed time for proc 115: 0.915207
+Elapsed time for proc 95: 0.915063
+Elapsed time for proc 37: 0.915061
+Elapsed time for proc 88: 0.915442
+Elapsed time for proc 90: 0.915086
+Elapsed time for proc 117: 0.915086
+Elapsed time for proc 101: 0.915369
+Elapsed time for proc 79: 0.915313
+Elapsed time for proc 103: 0.915297
+Elapsed time for proc 96: 0.915172
+Elapsed time for proc 100: 0.914800
+Elapsed time for proc 18: 0.914952
+Elapsed time for proc 84: 0.914974
+Elapsed time for proc 98: 0.914815
+Elapsed time for proc 16: 0.914905
+Elapsed time for proc 111: 0.915126
+Elapsed time for proc 10: 0.914846
+Elapsed time for proc 31: 0.915055
+Elapsed time for proc 27: 0.915026
+Elapsed time for proc 29: 0.915085
+Elapsed time for proc 43: 0.915268
+Elapsed time for proc 57: 0.915076
+Elapsed time for proc 77: 0.915207
+Elapsed time for proc 61: 0.915178
+Elapsed time for proc 13: 0.915223
+Elapsed time for proc 94: 0.915168
+Elapsed time for proc 55: 0.915062
+Elapsed time for proc 9: 0.915053
+Elapsed time for proc 86: 0.914974
+Elapsed time for proc 48: 0.915225
+Elapsed time for proc 74: 0.915264
+Elapsed time for proc 28: 0.915215
+Elapsed time for proc 93: 0.915221
+Elapsed time for proc 22: 0.915005
+Elapsed time for proc 19: 0.915241
+Elapsed time for proc 24: 0.915079
+Elapsed time for proc 34: 0.915503
+Elapsed time for proc 110: 0.915130
+Elapsed time for proc 104: 0.915505
+Elapsed time for proc 72: 0.914853
+Elapsed time for proc 82: 0.914968
+Elapsed time for proc 102: 0.914980
+Elapsed time for proc 58: 0.915281
+Elapsed time for proc 106: 0.914996
+Elapsed time for proc 60: 0.915510
+Elapsed time for proc 126: 0.915061
+Elapsed time for proc 3: 0.915015
+Elapsed time for proc 62: 0.915333
+Elapsed time for proc 59: 0.915104
+Elapsed time for proc 92: 0.915429
+Elapsed time for proc 78: 0.915471
+Elapsed time for proc 65: 0.915221
+Elapsed time for proc 118: 0.914945
+Elapsed time for proc 121: 0.914898
+Elapsed time for proc 64: 0.915186
+Elapsed time for proc 35: 0.915161
+Elapsed time for proc 109: 0.915122
+Elapsed time for proc 113: 0.915105
+Elapsed time for proc 123: 0.915205
