@@ -285,6 +285,7 @@ set<int> luby_algorithm(int n, int E, set<int> * adj_list) {
     double total_time_step6 = 0;
 
     while (true) {
+
         // 1. First determine the number of vertices in the active
         // set across all of the processes.
         double time_inc_start = MPI_Wtime();
@@ -364,13 +365,11 @@ set<int> luby_algorithm(int n, int E, set<int> * adj_list) {
             std::set<int, greater<int>>::iterator itr;
             for (itr = active_set_neighbors[u - start].begin(); itr != active_set_neighbors[u - start].end(); itr++) {
                 int v = *itr;
-                active_set_neighbors[u - start].erase(v);
+                active_set_neighbors[v - start].erase(u);
             }
         }
         time_inc = MPI_Wtime() - time_inc_start;
         total_time_step6 += time_inc;
-
-
 
     }
     // Running time
