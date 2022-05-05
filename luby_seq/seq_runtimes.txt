@@ -1,0 +1,35 @@
+n = 15, E = 100000
+Number of Nodes: 15 Number of Edges: 100000
+Probability Params: 0.100000 0.300000 0.300000.
+reading
+Time for step 1: 0.016879
+Time for step 2: 0.018662
+Time for step 3: 0.038850
+Time for step 4: 0.018879
+Time for step 5: 1.061153
+Time for step 6: 0.019482
+Elapsed time: 1.191585
+
+n = 15, E = 1000000
+Number of Nodes: 15 Number of Edges: 1000000
+Probability Params: 0.100000 0.300000 0.300000.
+reading
+Time for step 1: 0.046177
+Time for step 2: 0.052857
+Time for step 3: 0.184636
+Time for step 4: 0.056204
+Time for step 5: 4.127119
+Time for step 6: 1.396840
+Elapsed time: 6.091636
+
+n = 15, E = 10000000
+Number of Nodes: 15 Number of Edges: 10000000
+Probability Params: 0.100000 0.300000 0.300000.
+reading
+Time for step 1: 0.170516
+Time for step 2: 0.192397
+Time for step 3: 1.585872
+Time for step 4: 0.188239
+Time for step 5: 15.737741
+Time for step 6: 52.853872
+Elapsed time: 71.919414

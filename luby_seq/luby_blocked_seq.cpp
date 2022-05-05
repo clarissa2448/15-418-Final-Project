@@ -360,14 +360,24 @@ set<int> luby_algorithm(int n, int E, set<int> * adj_list) {
         // the independent set, then for each other process i,
         // send the removed vertices which are neighbors of i.
         time_inc_start = MPI_Wtime();
+        std::vector<int> removed_neighbors_from_active_set;
+        std::vector<int> other_vertices;
         for (uint i = 0; i < newly_removed_from_active_set.size(); i++) {
             int u = newly_removed_from_active_set[i];
             std::set<int, greater<int>>::iterator itr;
             for (itr = active_set_neighbors[u - start].begin(); itr != active_set_neighbors[u - start].end(); itr++) {
                 int v = *itr;
-                active_set_neighbors[v - start].erase(u);
+                removed_neighbors_from_active_set.push_back(u);
+                other_vertices.push_back(v);
             }
         }
+
+        for (uint j = 0; j < removed_neighbors_from_active_set.size(); j++) {
+            int removed_neighbor = removed_neighbors_from_active_set[j];
+            int other_vertex = other_vertices[j];
+            active_set_neighbors[other_vertex - start].erase(removed_neighbor);
+        }
+
         time_inc = MPI_Wtime() - time_inc_start;
         total_time_step6 += time_inc;
 
